@@ -19,19 +19,20 @@ const App = () => {
 
   return (
     <div className="container">
-      <div className="section">
+      <div className="section pb-0">
         <h1 className="title">Music Critic Dataset</h1>
       </div>
       <div className="section">
-        <div className="columns" style={{height:"70vh"}}>
-        <div className="column">
-            <CriticDetail data={currentCritic} />
-          </div>
+        <div className="columns" style={{ height: "70vh" }}>
           <div className="column">
             <CriticTable
               onRowClick={(critic) => setCurrentCritic(critic)}
               allData={data}
+              currentItem={currentCritic}
             />
+          </div>
+          <div className="column">
+            <CriticDetail data={currentCritic} />
           </div>
         </div>
       </div>

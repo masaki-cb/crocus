@@ -1,5 +1,8 @@
-.tbody{
+.cardContent{
     overflow-y: scroll;
-    height: 40vh;
-    display: block;
+    .tbody{
+        overflow-y: scroll;
+        height: 40vh;
+        display: block;
+    }
 }

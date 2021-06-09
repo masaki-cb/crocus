@@ -24,12 +24,14 @@ const columns: Column<Data>[] = [
 type Props = {
   onRowClick: (param: Data) => void;
   allData: Data[];
+  currentItem: Data;
 };
 
-const CriticTable = ({ allData, onRowClick }: Props) => {
+const CriticTable = ({ allData, onRowClick, currentItem }: Props) => {
   const defaultColumn = useMemo(
     () => ({
-      width: 150,
+      maxWidth: 300,
+      minWidth: 100,
     }),
     []
   );
@@ -40,13 +42,21 @@ const CriticTable = ({ allData, onRowClick }: Props) => {
       useSortBy,
       useBlockLayout
     );
+
+  const isActive = (row: Data) => {
+    return (
+      row.pieceID === currentItem.pieceID &&
+      row.playerID === currentItem.playerID &&
+      row.criticID === currentItem.criticID
+    );
+  };
   return (
     // FIXME マルチソートができない
     // FIXME thead固定
     // FIXME 譜面PDF表示
-    <div className="card" style={{height:"100%"}}>
-      <div className="card-content">
-        <table className="table is-hoverable " {...getTableProps()}>
+    <div className={`card`} style={{ height: "100%" }}>
+      <div className={`card-content ${styles.cardContent}`}>
+        <table className="table is-hoverable" {...getTableProps()}>
           <thead className={styles.thead}>
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
@@ -86,6 +96,7 @@ const CriticTable = ({ allData, onRowClick }: Props) => {
                 <tr
                   {...row.getRowProps()}
                   onClick={() => onRowClick(row.original)}
+                  className={isActive(row.original) ? "has-background-primary": ""}
                 >
                   {row.cells.map((cell) => {
                     return (
