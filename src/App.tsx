@@ -1,64 +1,66 @@
-import logo from "./logo.svg";
-import data from "./data.json";
+import { useMemo } from "react";
+
+import { useTable, Column, useSortBy } from "react-table";
+import jsonData from "./data.json";
 import "./App.css";
-import { useTable, Column } from "react-table";
 
-function App() {
-  const columns: Column<Data>[] = [
-    { Header: "pieceID", accessor: "pieceID" },
-    { Header: "playerID", accessor: "playerID" },
-    { Header: "criticID", accessor: "criticID" },
-    { Header: "critiqueFileName", accessor: "critiqueFileName" },
-    { Header: "content", accessor: "content" },
-  ];
-  interface Data {
-    pieceID: string;
-    playerID: string;
-    criticID: string;
-    critiqueFileName: string;
-    content: string;
-  }
-
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable<Data>({ columns, data });
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <table {...getTableProps()}>
-          <thead>
-            {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column) => (
-                  <th {...column.getHeaderProps()}>
-                    {column.render("Header")}
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </thead>
-          <tbody {...getTableBodyProps()}>
-            {rows.map((row, i) => {
-              prepareRow(row);
-              return (
-                <tr {...row.getRowProps()}>
-                  {row.cells.map((cell) => {
-                    return (
-                      <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
-                    );
-                  })}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </header>
-    </div>
-  );
+interface Data {
+  pieceID: string;
+  playerID: string;
+  criticID: string;
+  critiqueFileName: string;
+  content: string;
 }
 
+const columns: Column<Data>[] = [
+  { Header: "pieceID", accessor: "pieceID" },
+  { Header: "playerID", accessor: "playerID" },
+  { Header: "criticID", accessor: "criticID" },
+  { Header: "critiqueFileName", accessor: "critiqueFileName" },
+  { Header: "content", accessor: "content" },
+];
+
+
+function App() {
+  const data = useMemo(() => jsonData, []);
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+    useTable<Data>({ columns, data }, useSortBy);
+
+  return (
+    <table {...getTableProps()}>
+      <thead>
+        {headerGroups.map((headerGroup) => (
+          <tr {...headerGroup.getHeaderGroupProps()}>
+            {headerGroup.headers.map((column) => (
+              <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                {console.log(column.getSortByToggleProps())}
+                {column.render("Header")}
+                <span>
+                  {" "}
+                  {column.isSorted
+                    ? column.isSortedDesc
+                      ? " 🔽"
+                      : " 🔼"
+                    : ""}{" "}
+                </span>
+              </th>
+            ))}
+          </tr>
+        ))}
+      </thead>
+      <tbody {...getTableBodyProps()}>
+        {rows.map((row, i) => {
+          prepareRow(row);
+          return (
+            <tr {...row.getRowProps()}>
+              {row.cells.map((cell) => {
+                return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
+              })}
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  );
+}
 export default App;
