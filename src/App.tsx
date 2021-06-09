@@ -20,6 +20,9 @@ const App = () => {
   return (
     <div className="container">
       <div className="section">
+        <h1 className="title">Music Critic Dataset</h1>
+      </div>
+      <div className="section">
         <div className="columns">
           <div className={`column ${styles.table}`}>
             <CriticTable

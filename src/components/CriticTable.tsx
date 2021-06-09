@@ -1,5 +1,11 @@
 import { useTable, Column, useSortBy } from "react-table";
 import styles from "./CriticTable.module.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faSort,
+  faSortAlphaUp,
+  faSortAlphaDownAlt,
+} from "@fortawesome/free-solid-svg-icons";
 
 type Data = {
   pieceID: string;
@@ -31,12 +37,15 @@ const CriticTable = ({ allData, onRowClick }: Props) => {
                 {console.log(column.getSortByToggleProps())}
                 {column.render("Header")}
                 <span>
-                  {" "}
-                  {column.isSorted
-                    ? column.isSortedDesc
-                      ? " 🔽"
-                      : " 🔼"
-                    : ""}{" "}
+                  {column.isSorted ? (
+                    column.isSortedDesc ? (
+                      <FontAwesomeIcon icon={faSortAlphaDownAlt} />
+                    ) : (
+                      <FontAwesomeIcon icon={faSortAlphaUp} />
+                    )
+                  ) : (
+                    <FontAwesomeIcon icon={faSort} />
+                  )}
                 </span>
               </th>
             ))}
