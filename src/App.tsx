@@ -23,8 +23,11 @@ const App = () => {
         <h1 className="title">Music Critic Dataset</h1>
       </div>
       <div className="section">
-        <div className="columns" style={{ height: "70vh" }}>
-          <div className="column">
+        <div className={`columns ${styles.columns}`}>
+          <div
+            className="column is-two-thirds-desktop"
+            style={{ overflowX: "scroll" }}
+          >
             <CriticTable
               onRowClick={(critic) => setCurrentCritic(critic)}
               allData={data}
