@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 type Data = {
   pieceID: string;
   playerID: string;
@@ -16,7 +14,22 @@ const CriticDetail = ({ data }: Props) => {
         <p className="is-6">playerID: {data.playerID}</p>
         <p className="is-6">pieceID: {data.pieceID}</p>
         <p>{data.content}</p>
-        <a href={`/Music_Score/${data.pieceID}.pdf`} target="_blank">Piece PDF</a>
+        <object
+          data={`Music_Score/${data.pieceID}.pdf`}
+          type="application/pdf"
+          width="100%"
+          height="100%"
+        >
+          <p>
+            <a
+              href={`Music_Score/${data.pieceID}.pdf`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Download Piece PDF
+            </a>
+          </p>
+        </object>
         <audio
           controls
           src={`Performance_Recordings_mp3/${data.pieceID}-${data.playerID}.mp3`}

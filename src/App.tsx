@@ -24,14 +24,14 @@ const App = () => {
       </div>
       <div className="section">
         <div className="columns">
-          <div className={`column ${styles.table}`}>
+        <div className="column">
+            <CriticDetail data={currentCritic} />
+          </div>
+          <div className="column">
             <CriticTable
               onRowClick={(critic) => setCurrentCritic(critic)}
               allData={data}
             />
-          </div>
-          <div className="column">
-            <CriticDetail data={currentCritic} />
           </div>
         </div>
       </div>
