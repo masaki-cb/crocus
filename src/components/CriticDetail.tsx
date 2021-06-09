@@ -8,7 +8,7 @@ type Data = {
 type Props = { data: Data };
 const CriticDetail = ({ data }: Props) => {
   return (
-    <div className="card">
+    <div className="card" style={{height:"100%"}}>
       <div className="card-content">
         <p className="title is-4">criticID: {data.criticID}</p>
         <p className="is-6">playerID: {data.playerID}</p>

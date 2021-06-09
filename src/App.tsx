@@ -23,7 +23,7 @@ const App = () => {
         <h1 className="title">Music Critic Dataset</h1>
       </div>
       <div className="section">
-        <div className="columns">
+        <div className="columns" style={{height:"70vh"}}>
         <div className="column">
             <CriticDetail data={currentCritic} />
           </div>
