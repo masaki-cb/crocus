@@ -1,7 +1,18 @@
 import { useState } from "react";
 
-
-const App = () => {
- return (<></>);
+type Data = {
+  pieceID: string;
+  playerID: string;
+  criticID: string;
+  critiqueFileName: string;
+  content: string;
 };
-export default App;
+type Props = { data:Data };
+const CriticDetail = ({ data }: Props) => {
+  return (
+      <>
+      {data.content}
+      </>
+  );
+};
+export default CriticDetail;
