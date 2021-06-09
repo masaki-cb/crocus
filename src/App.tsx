@@ -18,15 +18,19 @@ const App = () => {
   const [currentCritic, setCurrentCritic] = useState(data[0]);
 
   return (
-    <div className="columns">
-      <div className={`column`}>
-        <CriticTable
-          onRowClick={(critic) => setCurrentCritic(critic)}
-          allData={data}
-        />
-      </div>
-      <div className="column">
-        <CriticDetail data={currentCritic}/>
+    <div className="container">
+      <div className="section">
+        <div className="columns">
+          <div className={`column ${styles.table}`}>
+            <CriticTable
+              onRowClick={(critic) => setCurrentCritic(critic)}
+              allData={data}
+            />
+          </div>
+          <div className="column">
+            <CriticDetail data={currentCritic} />
+          </div>
+        </div>
       </div>
     </div>
   );

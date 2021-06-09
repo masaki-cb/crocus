@@ -22,7 +22,7 @@ const CriticTable = ({ allData, onRowClick }: Props) => {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable<Data>({ columns, data: allData }, useSortBy);
   return (
-    <table className="column" {...getTableProps()}>
+    <table className="table is-hoverable" {...getTableProps()}>
       <thead className={styles.hoge}>
         {headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
