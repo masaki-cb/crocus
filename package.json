@@ -2,7 +2,7 @@
   "name": "music-review-dataset",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://hotsukai.github.io/mpcdb/",
+  "homepage": "./",
   "dependencies": {
     "@babel/core": "7.12.3",
     "@fortawesome/fontawesome-svg-core": "^1.2.35",

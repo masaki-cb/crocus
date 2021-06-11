@@ -5,16 +5,8 @@ import CriticDetail from "./components/CriticDetail";
 import jsonData from "./data.json";
 import styles from "./App.module.scss";
 
-type Data = {
-  pieceID: string;
-  playerID: string;
-  criticID: string;
-  critiqueFileName: string;
-  content: string;
-};
-
 const App = () => {
-  const data: Data[] = jsonData;
+  const data = jsonData;
   const [currentCritic, setCurrentCritic] = useState(data[0]);
 
   return (

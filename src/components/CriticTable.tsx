@@ -14,12 +14,30 @@ type Data = {
   criticID: string;
   critiqueFileName: string;
   content: string;
+  Q1:string;
+  Q2:string;
+  Q3:string;
+  Q4:string;
+  Q5:string;
+  Q6:string;
+  Q7:string;
+  Q8:string;
+  Q9:string;
 };
 
 const columns: Column<Data>[] = [
   { Header: "pieceID", accessor: "pieceID" },
   { Header: "playerID", accessor: "playerID" },
   { Header: "criticID", accessor: "criticID" },
+  {Header:"Q1",accessor:"Q1"},
+  {Header:"Q2",accessor:"Q2"},
+  {Header:"Q3",accessor:"Q3"},
+  {Header:"Q4",accessor:"Q4"},
+  {Header:"Q5",accessor:"Q5"},
+  {Header:"Q6",accessor:"Q6"},
+  {Header:"Q7",accessor:"Q7"},
+  {Header:"Q8",accessor:"Q8"},
+  {Header:"Q9",accessor:"Q9"},
 ];
 type Props = {
   onRowClick: (param: Data) => void;

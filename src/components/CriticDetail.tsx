@@ -26,7 +26,7 @@ const CriticDetail = ({ data }: Props) => {
         />
         <audio
           controls
-          src={`Performance_Recordings_mp3/${data.pieceID}-${data.playerID}.mp3`}
+          src={`./Performance_Recordings_mp3/${data.pieceID}-${data.playerID}.mp3`}
           className={`${styles.audio} mt-5`}
         >
           Your browser does not support the
@@ -34,14 +34,14 @@ const CriticDetail = ({ data }: Props) => {
         </audio>
         <div className="mt-5">
           <object
-            data={`Music_Score/${data.pieceID}.pdf`}
+            data={`./Music_Score/${data.pieceID}.pdf`}
             type="application/pdf"
             width="100%"
             height="500px"
           >
             <p>
               <a
-                href={`Music_Score/${data.pieceID}.pdf`}
+                href={`./Music_Score/${data.pieceID}.pdf`}
                 target="_blank"
                 rel="noreferrer"
               >
