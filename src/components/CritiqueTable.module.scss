@@ -1,7 +1,13 @@
 .cardContent {
   .tableWrapper {
-    overflow-y: scroll;
+    overflow-x: scroll;
+    .thead{
+      .columns{
+        margin: 0;
+      }
+    }
     .tbody {
+      overflow-y: scroll;
       height: 80vh;
       display: block;
       @media (max-width: 480px) {

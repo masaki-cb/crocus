@@ -30,8 +30,7 @@ for f_name in os.listdir(DIRNAME):
             if row[0] != f_name:
                 continue
             else:
-                scores[row[1]] = row[2]
-    print(scores)
+                scores[row[1]] = float(row[2])
     critique_datas.append(
         {
             "pieceID": PieceID,

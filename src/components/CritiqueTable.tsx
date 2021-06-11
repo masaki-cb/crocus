@@ -4,8 +4,8 @@ import styles from "./CritiqueTable.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSort,
-  faSortAlphaUp,
-  faSortAlphaDownAlt,
+  faSortUp,
+  faSortDown,
 } from "@fortawesome/free-solid-svg-icons";
 // FIXME マルチソートが使いにくい
 // FIXME 列幅調整
@@ -15,15 +15,15 @@ type Data = {
   criticID: string;
   critiqueFileName: string;
   content: string;
-  Q1: string;
-  Q2: string;
-  Q3: string;
-  Q4: string;
-  Q5: string;
-  Q6: string;
-  Q7: string;
-  Q8: string;
-  Q9: string;
+  Q1: number;
+  Q2: number;
+  Q3: number;
+  Q4: number;
+  Q5: number;
+  Q6: number;
+  Q7: number;
+  Q8: number;
+  Q9: number;
 };
 
 const columns: Column<Data>[] = [
@@ -68,9 +68,8 @@ const columns: Column<Data>[] = [
         今後の演奏に関連しない記載があると思いますか？
         <br />
         <span style={{ fontSize: "8px" }}>
-          (10:関連しない記載はない-0:関連しない記載がある
+          (10:関連しない記載はない-0:関連しない記載がある)
         </span>
-        )
       </>
     ),
     accessor: "Q4",
@@ -176,32 +175,30 @@ const CritiqueTable = ({ allData, onRowClick, currentItem }: Props) => {
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
                   <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                    <div className="columns is-mobile">
-                      <div className="column is-four-fifths p-0">
+                    <div className={`columns is-mobile ${styles.columns}`}>
+                    <div className="column is-11 px-0">
                         {column.render("Header")}
                       </div>
-                      <div className="column p-0">
+                    <div className="column is-1 px-1">
                         {column.isSorted ? (
                           column.isSortedDesc ? (
                             <FontAwesomeIcon
-                              icon={faSortAlphaDownAlt}
-                              style={{ marginLeft: "0.5rem" }}
+                              icon={faSortDown}
                               className="has-text-primary"
                             />
                           ) : (
                             <FontAwesomeIcon
-                              icon={faSortAlphaUp}
-                              style={{ marginLeft: "0.5rem" }}
+                              icon={faSortUp}
                               className="has-text-primary"
                             />
                           )
                         ) : (
                           <FontAwesomeIcon
                             icon={faSort}
-                            style={{ marginLeft: "0.5rem" }}
                           />
                         )}
                       </div>
+                      
                     </div>
                   </th>
                 ))}
