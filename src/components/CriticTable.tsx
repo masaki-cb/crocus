@@ -15,30 +15,118 @@ type Data = {
   criticID: string;
   critiqueFileName: string;
   content: string;
-  Q1:string;
-  Q2:string;
-  Q3:string;
-  Q4:string;
-  Q5:string;
-  Q6:string;
-  Q7:string;
-  Q8:string;
-  Q9:string;
+  Q1: string;
+  Q2: string;
+  Q3: string;
+  Q4: string;
+  Q5: string;
+  Q6: string;
+  Q7: string;
+  Q8: string;
+  Q9: string;
 };
 
 const columns: Column<Data>[] = [
   { Header: "pieceID", accessor: "pieceID" },
   { Header: "playerID", accessor: "playerID" },
   { Header: "criticID", accessor: "criticID" },
-  {Header:"Q1",accessor:"Q1"},
-  {Header:"Q2",accessor:"Q2"},
-  {Header:"Q3",accessor:"Q3"},
-  {Header:"Q4",accessor:"Q4"},
-  {Header:"Q5",accessor:"Q5"},
-  {Header:"Q6",accessor:"Q6"},
-  {Header:"Q7",accessor:"Q7"},
-  {Header:"Q8",accessor:"Q8"},
-  {Header:"Q9",accessor:"Q9"},
+  {
+    Header: (
+      <>
+        読みやすいと思いますか？
+        <br />
+        <span style={{ fontSize: "8px" }}>(10:読みやすい-0:読みにくい)</span>
+      </>
+    ),
+    accessor: "Q1",
+  },
+  {
+    Header: (
+      <>
+        わかりやすいと思いますか？
+        <br />
+        <span style={{ fontSize: "8px" }}>
+          (10:わかりやすい-0:わかりにくい)
+        </span>
+      </>
+    ),
+    accessor: "Q2",
+  },
+  {
+    Header: (
+      <>
+        今後の演奏に役に立つと思いますか？
+        <br />
+        <span style={{ fontSize: "8px" }}>(10:役に立つ-0:役に立たない)</span>
+      </>
+    ),
+    accessor: "Q3",
+  },
+  {
+    Header: (
+      <>
+        今後の演奏に関連しない記載があると思いますか？
+        <br />
+        <span style={{ fontSize: "8px" }}>
+          (10:関連しない記載はない-0:関連しない記載がある
+        </span>
+        )
+      </>
+    ),
+    accessor: "Q4",
+  },
+  {
+    Header: (
+      <>
+        曖昧な記載だと思いますか？
+        <br />
+        <span style={{ fontSize: "8px" }}>(10:曖昧でない-0:曖昧である)</span>
+      </>
+    ),
+    accessor: "Q5",
+  },
+  {
+    Header: (
+      <>
+        今後の演奏に関連する記載が全て書かれていると思いますか？
+        <br />
+        <span style={{ fontSize: "8px" }}>
+          (10:書かれている-0:書かれていない)
+        </span>
+      </>
+    ),
+    accessor: "Q6",
+  },
+  {
+    Header: (
+      <>
+        矛盾がないと思いますか？
+        <br />
+        <span style={{ fontSize: "8px" }}>(10:矛盾はない-0:矛盾がある)</span>
+      </>
+    ),
+    accessor: "Q7",
+  },
+  {
+    Header: (
+      <>
+        記載されている内容は演奏を聴くことで検証できると思いますか？
+        <br />
+        <span style={{ fontSize: "8px" }}>(10:検証できる-0:検証できない)</span>
+      </>
+    ),
+    accessor: "Q8",
+  },
+  {
+    Header: (
+      <>
+        記載されている内容から該当箇所を楽譜で参照できると思いますか？
+        <br />
+        <span style={{ fontSize: "8px" }}>(10:参照できる-0:参照できない)</span>
+      </>
+    ),
+    accessor: "Q9",
+  },
 ];
 type Props = {
   onRowClick: (param: Data) => void;
@@ -85,29 +173,33 @@ const CriticTable = ({ allData, onRowClick, currentItem }: Props) => {
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
                   <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                    {column.render("Header")}
-                    <span>
-                      {column.isSorted ? (
-                        column.isSortedDesc ? (
-                          <FontAwesomeIcon
-                            icon={faSortAlphaDownAlt}
-                            style={{ marginLeft: "0.5rem" }}
-                            className="has-text-primary"
-                          />
+                    <div className="columns is-mobile">
+                      <div className="column is-four-fifths p-0">
+                        {column.render("Header")}
+                      </div>
+                      <div className="column p-0">
+                        {column.isSorted ? (
+                          column.isSortedDesc ? (
+                            <FontAwesomeIcon
+                              icon={faSortAlphaDownAlt}
+                              style={{ marginLeft: "0.5rem" }}
+                              className="has-text-primary"
+                            />
+                          ) : (
+                            <FontAwesomeIcon
+                              icon={faSortAlphaUp}
+                              style={{ marginLeft: "0.5rem" }}
+                              className="has-text-primary"
+                            />
+                          )
                         ) : (
                           <FontAwesomeIcon
-                            icon={faSortAlphaUp}
+                            icon={faSort}
                             style={{ marginLeft: "0.5rem" }}
-                            className="has-text-primary"
                           />
-                        )
-                      ) : (
-                        <FontAwesomeIcon
-                          icon={faSort}
-                          style={{ marginLeft: "0.5rem" }}
-                        />
-                      )}
-                    </span>
+                        )}
+                      </div>
+                    </div>
                   </th>
                 ))}
               </tr>
