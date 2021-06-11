@@ -38,7 +38,14 @@ const CriticTable = ({ allData, onRowClick, currentItem }: Props) => {
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable<Data>(
-      { columns, data: allData, defaultColumn },
+      {
+        columns,
+        data: allData,
+        defaultColumn,
+        isMultiSortEvent: (me: React.MouseEvent) => {
+          return true;
+        },
+      },
       useSortBy,
       useBlockLayout
     );
@@ -51,9 +58,6 @@ const CriticTable = ({ allData, onRowClick, currentItem }: Props) => {
     );
   };
   return (
-    // FIXME マルチソートができない
-    // FIXME thead固定
-    // FIXME 譜面PDF表示
     <div className={`card`} style={{ height: "100%" }}>
       <div className={`card-content ${styles.cardContent}`}>
         <table className="table is-hoverable" {...getTableProps()}>
@@ -62,7 +66,6 @@ const CriticTable = ({ allData, onRowClick, currentItem }: Props) => {
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
                   <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                    {console.log(column.getSortByToggleProps())}
                     {column.render("Header")}
                     <span>
                       {column.isSorted ? (
@@ -96,7 +99,9 @@ const CriticTable = ({ allData, onRowClick, currentItem }: Props) => {
                 <tr
                   {...row.getRowProps()}
                   onClick={() => onRowClick(row.original)}
-                  className={isActive(row.original) ? "has-background-primary": ""}
+                  className={
+                    isActive(row.original) ? "has-background-primary" : ""
+                  }
                 >
                   {row.cells.map((cell) => {
                     return (
