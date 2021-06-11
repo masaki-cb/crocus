@@ -1,0 +1,12 @@
+.cardContent {
+  .tableWrapper {
+    overflow-y: scroll;
+    .tbody {
+      height: 80vh;
+      display: block;
+      @media (max-width: 480px) {
+        height: 40vh;
+      }
+    }
+  }
+}

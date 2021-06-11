@@ -1,4 +1,4 @@
-import styles from "./CriticDetail.module.scss";
+import styles from "./CritiqueDetail.module.scss";
 
 type Data = {
   pieceID: string;
@@ -8,13 +8,14 @@ type Data = {
   content: string;
 };
 type Props = { data: Data };
-const CriticDetail = ({ data }: Props) => {
+const CritiqueDetail = ({ data }: Props) => {
   return (
     <div className="card" style={{ height: "100%" }}>
       <div
         className="card-content"
         style={{ height: "100%", overflowY: "scroll" }}
       >
+        <h2 className="title is-4">Critique Detail</h2>
         <p className="is-size-4">criticID: {data.criticID}</p>
         <p className="is-size-6">playerID: {data.playerID}</p>
         <p className="is-size-6">pieceID: {data.pieceID}</p>
@@ -54,4 +55,4 @@ const CriticDetail = ({ data }: Props) => {
     </div>
   );
 };
-export default CriticDetail;
+export default CritiqueDetail;

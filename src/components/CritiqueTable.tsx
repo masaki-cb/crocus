@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useTable, Column, useSortBy, useBlockLayout } from "react-table";
-import styles from "./CriticTable.module.scss";
+import styles from "./CritiqueTable.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSort,
@@ -134,7 +134,7 @@ type Props = {
   currentItem: Data;
 };
 
-const CriticTable = ({ allData, onRowClick, currentItem }: Props) => {
+const CritiqueTable = ({ allData, onRowClick, currentItem }: Props) => {
   const defaultColumn = useMemo(
     () => ({
       maxWidth: 300,
@@ -167,7 +167,10 @@ const CriticTable = ({ allData, onRowClick, currentItem }: Props) => {
   return (
     <div className={`card`} style={{ height: "100%" }}>
       <div className={`card-content ${styles.cardContent}`}>
-        <table className="table is-hoverable" {...getTableProps()}>
+        <h2 className="title is-4">Critique List</h2>
+        <div className={styles.tableWrapper} >
+
+        <table className={`table is-hoverable`} {...getTableProps()}>
           <thead className={styles.thead}>
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
@@ -227,7 +230,8 @@ const CriticTable = ({ allData, onRowClick, currentItem }: Props) => {
           </tbody>
         </table>
       </div>
+        </div>
     </div>
   );
 };
-export default CriticTable;
+export default CritiqueTable;

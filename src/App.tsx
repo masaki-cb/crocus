@@ -1,13 +1,13 @@
 import { useState } from "react";
 
-import CriticTable from "./components/CriticTable";
-import CriticDetail from "./components/CriticDetail";
+import CritiqueTable from "./components/CritiqueTable";
+import CritiqueDetail from "./components/CritiqueDetail";
 import jsonData from "./data.json";
 import styles from "./App.module.scss";
 
 const App = () => {
   const data = jsonData;
-  const [currentCritic, setCurrentCritic] = useState(data[0]);
+  const [currentCritique, setCurrentCritique] = useState(data[0]);
 
   return (
     <div className="container">
@@ -20,14 +20,14 @@ const App = () => {
             className="column is-two-thirds-desktop"
             style={{ overflowX: "scroll" }}
           >
-            <CriticTable
-              onRowClick={(critic) => setCurrentCritic(critic)}
+            <CritiqueTable
+              onRowClick={(c) => setCurrentCritique(c)}
               allData={data}
-              currentItem={currentCritic}
+              currentItem={currentCritique}
             />
           </div>
           <div className="column">
-            <CriticDetail data={currentCritic} />
+            <CritiqueDetail data={currentCritique} />
           </div>
         </div>
       </div>
