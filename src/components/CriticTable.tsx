@@ -7,7 +7,8 @@ import {
   faSortAlphaUp,
   faSortAlphaDownAlt,
 } from "@fortawesome/free-solid-svg-icons";
-
+// FIXME マルチソートが使いにくい
+// FIXME 列幅調整
 type Data = {
   pieceID: string;
   playerID: string;
@@ -60,9 +61,9 @@ const CriticTable = ({ allData, onRowClick, currentItem }: Props) => {
         columns,
         data: allData,
         defaultColumn,
-        isMultiSortEvent: (me: React.MouseEvent) => {
-          return true;
-        },
+        // isMultiSortEvent: (me: React.MouseEvent) => {
+        //   return true;
+        // },
       },
       useSortBy,
       useBlockLayout
@@ -91,11 +92,13 @@ const CriticTable = ({ allData, onRowClick, currentItem }: Props) => {
                           <FontAwesomeIcon
                             icon={faSortAlphaDownAlt}
                             style={{ marginLeft: "0.5rem" }}
+                            className="has-text-primary"
                           />
                         ) : (
                           <FontAwesomeIcon
                             icon={faSortAlphaUp}
                             style={{ marginLeft: "0.5rem" }}
+                            className="has-text-primary"
                           />
                         )
                       ) : (

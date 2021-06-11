@@ -1,8 +1,11 @@
-.cardContent{
+.cardContent {
+  overflow-y: scroll;
+  .tbody {
     overflow-y: scroll;
-    .tbody{
-        overflow-y: scroll;
-        height: 60vh;
-        display: block;
+    height: 80vh;
+    display: block;
+    @media (max-width: 480px) {
+      height: 40vh;
     }
+  }
 }
