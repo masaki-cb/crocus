@@ -7,7 +7,6 @@ import {
   faSortUp,
   faSortDown,
 } from "@fortawesome/free-solid-svg-icons";
-// FIXME マルチソートが使いにくい
 // FIXME 列幅調整
 type Data = {
   pieceID: string;
@@ -38,7 +37,9 @@ const columns: Column<Data>[] = [
         <span style={{ fontSize: "8px" }}>(10:読みやすい-0:読みにくい)</span>
       </>
     ),
-    accessor: "Q1",
+    accessor: (row) => row.Q1.toFixed(1),
+    id: "Q1",
+    sortType: "number",
   },
   {
     Header: (
@@ -50,7 +51,9 @@ const columns: Column<Data>[] = [
         </span>
       </>
     ),
-    accessor: "Q2",
+    id: "Q2",
+    accessor: (row) => row.Q2.toFixed(1),
+    sortType: "number",
   },
   {
     Header: (
@@ -60,7 +63,9 @@ const columns: Column<Data>[] = [
         <span style={{ fontSize: "8px" }}>(10:役に立つ-0:役に立たない)</span>
       </>
     ),
-    accessor: "Q3",
+    accessor: (row) => row.Q3.toFixed(1),
+    id: "Q3",
+    sortType: "number",
   },
   {
     Header: (
@@ -72,7 +77,9 @@ const columns: Column<Data>[] = [
         </span>
       </>
     ),
-    accessor: "Q4",
+    accessor: (row) => row.Q4.toFixed(1),
+    id: "Q4",
+    sortType: "number",
   },
   {
     Header: (
@@ -82,7 +89,9 @@ const columns: Column<Data>[] = [
         <span style={{ fontSize: "8px" }}>(10:曖昧でない-0:曖昧である)</span>
       </>
     ),
-    accessor: "Q5",
+    accessor: (row) => row.Q5.toFixed(1),
+    id: "Q5",
+    sortType: "number",
   },
   {
     Header: (
@@ -94,7 +103,9 @@ const columns: Column<Data>[] = [
         </span>
       </>
     ),
-    accessor: "Q6",
+    accessor: (row) => row.Q6.toFixed(1),
+    id: "Q6",
+    sortType: "number",
   },
   {
     Header: (
@@ -104,7 +115,9 @@ const columns: Column<Data>[] = [
         <span style={{ fontSize: "8px" }}>(10:矛盾はない-0:矛盾がある)</span>
       </>
     ),
-    accessor: "Q7",
+    accessor: (row) => row.Q7.toFixed(1),
+    id: "Q7",
+    sortType: "number",
   },
   {
     Header: (
@@ -114,7 +127,9 @@ const columns: Column<Data>[] = [
         <span style={{ fontSize: "8px" }}>(10:検証できる-0:検証できない)</span>
       </>
     ),
-    accessor: "Q8",
+    accessor: (row) => row.Q8.toFixed(1),
+    id: "Q8",
+    sortType: "number",
   },
   {
     Header: (
@@ -124,7 +139,9 @@ const columns: Column<Data>[] = [
         <span style={{ fontSize: "8px" }}>(10:参照できる-0:参照できない)</span>
       </>
     ),
-    accessor: "Q9",
+    accessor: (row) => row.Q9.toFixed(1),
+    id: "Q9",
+    sortType: "number",
   },
 ];
 type Props = {
@@ -167,67 +184,68 @@ const CritiqueTable = ({ allData, onRowClick, currentItem }: Props) => {
     <div className={`card`} style={{ height: "100%" }}>
       <div className={`card-content ${styles.cardContent}`}>
         <h2 className="title is-4">Critique List</h2>
-        <div className={styles.tableWrapper} >
-
-        <table className={`table is-hoverable`} {...getTableProps()}>
-          <thead className={styles.thead}>
-            {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column) => (
-                  <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                    <div className={`columns is-mobile ${styles.columns}`}>
-                    <div className="column is-11 px-0">
-                        {column.render("Header")}
-                      </div>
-                    <div className="column is-1 px-1">
-                        {column.isSorted ? (
-                          column.isSortedDesc ? (
-                            <FontAwesomeIcon
-                              icon={faSortDown}
-                              className="has-text-primary"
-                            />
+        <p className="is-size-7">
+          Multi-sort applies when shift key is pressed
+        </p>
+        <div className={styles.tableWrapper}>
+          <table className={`table is-hoverable`} {...getTableProps()}>
+            <thead className={styles.thead}>
+              {headerGroups.map((headerGroup) => (
+                <tr {...headerGroup.getHeaderGroupProps()}>
+                  {headerGroup.headers.map((column) => (
+                    <th
+                      {...column.getHeaderProps(column.getSortByToggleProps())}
+                    >
+                      <div className={`columns is-mobile ${styles.columns}`}>
+                        <div className="column is-11 px-0">
+                          {column.render("Header")}
+                        </div>
+                        <div className="column is-1 px-1">
+                          {column.isSorted ? (
+                            column.isSortedDesc ? (
+                              <FontAwesomeIcon
+                                icon={faSortDown}
+                                className="has-text-primary"
+                              />
+                            ) : (
+                              <FontAwesomeIcon
+                                icon={faSortUp}
+                                className="has-text-primary"
+                              />
+                            )
                           ) : (
-                            <FontAwesomeIcon
-                              icon={faSortUp}
-                              className="has-text-primary"
-                            />
-                          )
-                        ) : (
-                          <FontAwesomeIcon
-                            icon={faSort}
-                          />
-                        )}
+                            <FontAwesomeIcon icon={faSort} />
+                          )}
+                        </div>
                       </div>
-                      
-                    </div>
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </thead>
-          <tbody {...getTableBodyProps()} className={styles.tbody}>
-            {rows.map((row, i) => {
-              prepareRow(row);
-              return (
-                <tr
-                  {...row.getRowProps()}
-                  onClick={() => onRowClick(row.original)}
-                  className={
-                    isActive(row.original) ? "has-background-primary" : ""
-                  }
-                >
-                  {row.cells.map((cell) => {
-                    return (
-                      <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
-                    );
-                  })}
+                    </th>
+                  ))}
                 </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
+              ))}
+            </thead>
+            <tbody {...getTableBodyProps()} className={styles.tbody}>
+              {rows.map((row, i) => {
+                prepareRow(row);
+                return (
+                  <tr
+                    {...row.getRowProps()}
+                    onClick={() => onRowClick(row.original)}
+                    className={
+                      isActive(row.original) ? "has-background-primary" : ""
+                    }
+                  >
+                    {row.cells.map((cell) => {
+                      return (
+                        <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                      );
+                    })}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
+      </div>
     </div>
   );
 };
