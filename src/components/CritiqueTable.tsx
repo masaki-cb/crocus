@@ -7,25 +7,10 @@ import {
   faSortUp,
   faSortDown,
 } from "@fortawesome/free-solid-svg-icons";
+import { CritiqueRecord } from "../types";
 // FIXME 列幅調整
-type Data = {
-  pieceID: string;
-  playerID: string;
-  criticID: string;
-  critiqueFileName: string;
-  content: string;
-  Q1: number;
-  Q2: number;
-  Q3: number;
-  Q4: number;
-  Q5: number;
-  Q6: number;
-  Q7: number;
-  Q8: number;
-  Q9: number;
-};
 
-const columns: Column<Data>[] = [
+const columns: Column<CritiqueRecord>[] = [
   { Header: "pieceID", accessor: "pieceID" },
   { Header: "playerID", accessor: "playerID" },
   { Header: "criticID", accessor: "criticID" },
@@ -145,9 +130,9 @@ const columns: Column<Data>[] = [
   },
 ];
 type Props = {
-  onRowClick: (param: Data) => void;
-  allData: Data[];
-  currentItem: Data;
+  onRowClick: (param: CritiqueRecord) => void;
+  allData: CritiqueRecord[];
+  currentItem: CritiqueRecord;
 };
 
 const CritiqueTable = ({ allData, onRowClick, currentItem }: Props) => {
@@ -160,7 +145,7 @@ const CritiqueTable = ({ allData, onRowClick, currentItem }: Props) => {
   );
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable<Data>(
+    useTable<CritiqueRecord>(
       {
         columns,
         data: allData,
@@ -173,7 +158,7 @@ const CritiqueTable = ({ allData, onRowClick, currentItem }: Props) => {
       useBlockLayout
     );
 
-  const isActive = (row: Data) => {
+  const isActive = (row: CritiqueRecord) => {
     return (
       row.pieceID === currentItem.pieceID &&
       row.playerID === currentItem.playerID &&
