@@ -7,7 +7,6 @@ import {
   faSortUp,
   faSortDown,
 } from "@fortawesome/free-solid-svg-icons";
-// FIXME マルチソートが使いにくい
 // FIXME 列幅調整
 type Data = {
   pieceID: string;
@@ -39,6 +38,7 @@ const columns: Column<Data>[] = [
       </>
     ),
     accessor: "Q1",
+    sortType: "number",
   },
   {
     Header: (
@@ -51,6 +51,7 @@ const columns: Column<Data>[] = [
       </>
     ),
     accessor: "Q2",
+    sortType: "number",
   },
   {
     Header: (
@@ -61,6 +62,7 @@ const columns: Column<Data>[] = [
       </>
     ),
     accessor: "Q3",
+    sortType: "number",
   },
   {
     Header: (
@@ -73,6 +75,7 @@ const columns: Column<Data>[] = [
       </>
     ),
     accessor: "Q4",
+    sortType: "number",
   },
   {
     Header: (
@@ -83,6 +86,7 @@ const columns: Column<Data>[] = [
       </>
     ),
     accessor: "Q5",
+    sortType: "number",
   },
   {
     Header: (
@@ -95,6 +99,7 @@ const columns: Column<Data>[] = [
       </>
     ),
     accessor: "Q6",
+    sortType: "number",
   },
   {
     Header: (
@@ -105,6 +110,7 @@ const columns: Column<Data>[] = [
       </>
     ),
     accessor: "Q7",
+    sortType: "number",
   },
   {
     Header: (
@@ -115,6 +121,7 @@ const columns: Column<Data>[] = [
       </>
     ),
     accessor: "Q8",
+    sortType: "number",
   },
   {
     Header: (
@@ -125,6 +132,7 @@ const columns: Column<Data>[] = [
       </>
     ),
     accessor: "Q9",
+    sortType: "number",
   },
 ];
 type Props = {
@@ -167,67 +175,65 @@ const CritiqueTable = ({ allData, onRowClick, currentItem }: Props) => {
     <div className={`card`} style={{ height: "100%" }}>
       <div className={`card-content ${styles.cardContent}`}>
         <h2 className="title is-4">Critique List</h2>
-        <div className={styles.tableWrapper} >
-
-        <table className={`table is-hoverable`} {...getTableProps()}>
-          <thead className={styles.thead}>
-            {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column) => (
-                  <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                    <div className={`columns is-mobile ${styles.columns}`}>
-                    <div className="column is-11 px-0">
-                        {column.render("Header")}
-                      </div>
-                    <div className="column is-1 px-1">
-                        {column.isSorted ? (
-                          column.isSortedDesc ? (
-                            <FontAwesomeIcon
-                              icon={faSortDown}
-                              className="has-text-primary"
-                            />
+        <div className={styles.tableWrapper}>
+          <table className={`table is-hoverable`} {...getTableProps()}>
+            <thead className={styles.thead}>
+              {headerGroups.map((headerGroup) => (
+                <tr {...headerGroup.getHeaderGroupProps()}>
+                  {headerGroup.headers.map((column) => (
+                    <th
+                      {...column.getHeaderProps(column.getSortByToggleProps())}
+                    >
+                      <div className={`columns is-mobile ${styles.columns}`}>
+                        <div className="column is-11 px-0">
+                          {column.render("Header")}
+                        </div>
+                        <div className="column is-1 px-1">
+                          {column.isSorted ? (
+                            column.isSortedDesc ? (
+                              <FontAwesomeIcon
+                                icon={faSortDown}
+                                className="has-text-primary"
+                              />
+                            ) : (
+                              <FontAwesomeIcon
+                                icon={faSortUp}
+                                className="has-text-primary"
+                              />
+                            )
                           ) : (
-                            <FontAwesomeIcon
-                              icon={faSortUp}
-                              className="has-text-primary"
-                            />
-                          )
-                        ) : (
-                          <FontAwesomeIcon
-                            icon={faSort}
-                          />
-                        )}
+                            <FontAwesomeIcon icon={faSort} />
+                          )}
+                        </div>
                       </div>
-                      
-                    </div>
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </thead>
-          <tbody {...getTableBodyProps()} className={styles.tbody}>
-            {rows.map((row, i) => {
-              prepareRow(row);
-              return (
-                <tr
-                  {...row.getRowProps()}
-                  onClick={() => onRowClick(row.original)}
-                  className={
-                    isActive(row.original) ? "has-background-primary" : ""
-                  }
-                >
-                  {row.cells.map((cell) => {
-                    return (
-                      <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
-                    );
-                  })}
+                    </th>
+                  ))}
                 </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
+              ))}
+            </thead>
+            <tbody {...getTableBodyProps()} className={styles.tbody}>
+              {rows.map((row, i) => {
+                prepareRow(row);
+                return (
+                  <tr
+                    {...row.getRowProps()}
+                    onClick={() => onRowClick(row.original)}
+                    className={
+                      isActive(row.original) ? "has-background-primary" : ""
+                    }
+                  >
+                    {row.cells.map((cell) => {
+                      return (
+                        <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                      );
+                    })}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
+      </div>
     </div>
   );
 };

@@ -2,7 +2,7 @@ import {
     UseSortByColumnOptions,
     UseSortByColumnProps,
     UseSortByInstanceProps,
-    UseSortByOptions,
+    UseSortByColumnOptions,
     UseSortByState
   } from 'react-table';
   
@@ -20,4 +20,7 @@ import {
   
     export interface ColumnInstance<D extends object = {}>
       extends UseSortByColumnProps<D> {}
+
+      export interface ColumnInterface<D extends object = {}>
+      extends UseSortByColumnOptions<D>{}
   }
