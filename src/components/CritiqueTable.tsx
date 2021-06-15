@@ -17,7 +17,7 @@ const columns: Column<CritiqueRecord>[] = [
   {
     Header: (
       <>
-        読みやすいと思いますか？
+        Q1:読みやすいと思いますか？
         <br />
         <span style={{ fontSize: "8px" }}>(10:読みやすい-0:読みにくい)</span>
       </>
@@ -29,7 +29,7 @@ const columns: Column<CritiqueRecord>[] = [
   {
     Header: (
       <>
-        わかりやすいと思いますか？
+        Q2:わかりやすいと思いますか？
         <br />
         <span style={{ fontSize: "8px" }}>
           (10:わかりやすい-0:わかりにくい)
@@ -43,7 +43,7 @@ const columns: Column<CritiqueRecord>[] = [
   {
     Header: (
       <>
-        今後の演奏に役に立つと思いますか？
+        Q3:今後の演奏に役に立つと思いますか？
         <br />
         <span style={{ fontSize: "8px" }}>(10:役に立つ-0:役に立たない)</span>
       </>
@@ -55,7 +55,7 @@ const columns: Column<CritiqueRecord>[] = [
   {
     Header: (
       <>
-        今後の演奏に関連しない記載があると思いますか？
+        Q4:今後の演奏に関連しない記載があると思いますか？
         <br />
         <span style={{ fontSize: "8px" }}>
           (10:関連しない記載はない-0:関連しない記載がある)
@@ -69,7 +69,7 @@ const columns: Column<CritiqueRecord>[] = [
   {
     Header: (
       <>
-        曖昧な記載だと思いますか？
+        Q5:曖昧な記載だと思いますか？
         <br />
         <span style={{ fontSize: "8px" }}>(10:曖昧でない-0:曖昧である)</span>
       </>
@@ -81,7 +81,7 @@ const columns: Column<CritiqueRecord>[] = [
   {
     Header: (
       <>
-        今後の演奏に関連する記載が全て書かれていると思いますか？
+        Q6:今後の演奏に関連する記載が全て書かれていると思いますか？
         <br />
         <span style={{ fontSize: "8px" }}>
           (10:書かれている-0:書かれていない)
@@ -95,7 +95,7 @@ const columns: Column<CritiqueRecord>[] = [
   {
     Header: (
       <>
-        矛盾がないと思いますか？
+        Q7:矛盾がないと思いますか？
         <br />
         <span style={{ fontSize: "8px" }}>(10:矛盾はない-0:矛盾がある)</span>
       </>
@@ -107,7 +107,7 @@ const columns: Column<CritiqueRecord>[] = [
   {
     Header: (
       <>
-        記載されている内容は演奏を聴くことで検証できると思いますか？
+        Q8:記載されている内容は演奏を聴くことで検証できると思いますか？
         <br />
         <span style={{ fontSize: "8px" }}>(10:検証できる-0:検証できない)</span>
       </>
@@ -119,7 +119,7 @@ const columns: Column<CritiqueRecord>[] = [
   {
     Header: (
       <>
-        記載されている内容から該当箇所を楽譜で参照できると思いますか？
+        Q9:記載されている内容から該当箇所を楽譜で参照できると思いますか？
         <br />
         <span style={{ fontSize: "8px" }}>(10:参照できる-0:参照できない)</span>
       </>

@@ -4,11 +4,11 @@ import CritiqueTable from "./components/CritiqueTable";
 import CritiqueDetail from "./components/CritiqueDetail";
 import jsonData from "./data.json";
 import styles from "./App.module.scss";
-import BarChart from "./components/BarChart";
 import { CritiqueRecord } from "./types";
+import ChartZone from "./components/ChartZone";
 
 const App = () => {
-  const records:CritiqueRecord[] = jsonData;
+  const records: CritiqueRecord[] = jsonData;
   const [currentCritique, setCurrentCritique] = useState(records[0]);
 
   return (
@@ -22,12 +22,9 @@ const App = () => {
           allData={records}
           currentItem={currentCritique}
         />
-        <div className={`columns ${styles.columns}`}>
-          <div
-            className="column is-two-thirds-desktop"
-            style={{ overflowX: "scroll" }}
-          >
-            <BarChart values={records.map(r=>r.Q1).sort()} targetVal={records[0].Q1} itemName="Q1"/>
+        <div className={`columns mt-5 ${styles.columns}`}>
+          <div className="column is-two-thirds-desktop">
+            <ChartZone records={records} currentCritique={currentCritique} />
           </div>
           <div className="column">
             <CritiqueDetail data={currentCritique} />

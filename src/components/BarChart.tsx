@@ -11,10 +11,10 @@ const BarChart = ({ values, targetVal, itemName }: Props) => {
       {
         label: itemName,
         data: values,
-        borderWidth: 1,
+        borderWidth: 0,
         backgroundColor: values.map((v) => {
           return v === targetVal
-            ? "rgba(153, 102, 255, 0.2)"
+            ? "rgba(255, 0, 0, 1)"
             : "rgba(255, 159, 64, 0.2)";
         }),
       },
