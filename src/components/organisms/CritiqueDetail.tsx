@@ -1,13 +1,7 @@
+import { CritiqueRecord } from "../../types/Critique";
 import styles from "./CritiqueDetail.module.scss";
 
-type Data = {
-  pieceID: string;
-  playerID: string;
-  criticID: string;
-  critiqueFileName: string;
-  content: string;
-};
-type Props = { data: Data };
+type Props = { data: CritiqueRecord};
 const CritiqueDetail = ({ data }: Props) => {
   return (
     <div className="card" style={{ height: "100%" }}>

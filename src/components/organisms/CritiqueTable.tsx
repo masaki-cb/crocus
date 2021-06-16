@@ -1,153 +1,50 @@
 import { useMemo } from "react";
 import { useTable, Column, useSortBy, useBlockLayout } from "react-table";
-import styles from "./CritiqueTable.module.scss";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSort,
   faSortUp,
   faSortDown,
 } from "@fortawesome/free-solid-svg-icons";
-// FIXME 列幅調整
-type Data = {
-  pieceID: string;
-  playerID: string;
-  criticID: string;
-  critiqueFileName: string;
-  content: string;
-  Q1: number;
-  Q2: number;
-  Q3: number;
-  Q4: number;
-  Q5: number;
-  Q6: number;
-  Q7: number;
-  Q8: number;
-  Q9: number;
-};
 
-const columns: Column<Data>[] = [
+import styles from "./CritiqueTable.module.scss";
+import { CritiqueRecord } from "../../types/Critique";
+import {
+  CritiqueQuestionIDs,
+  CritiqueQuestion,
+} from "../../consts/Critique";
+// FIXME 列幅調整
+
+const columns: Column<CritiqueRecord>[] = [
   { Header: "pieceID", accessor: "pieceID" },
   { Header: "playerID", accessor: "playerID" },
   { Header: "criticID", accessor: "criticID" },
-  {
-    Header: (
-      <>
-        読みやすいと思いますか？
-        <br />
-        <span style={{ fontSize: "8px" }}>(10:読みやすい-0:読みにくい)</span>
-      </>
-    ),
-    accessor: (row) => row.Q1.toFixed(1),
-    id: "Q1",
-    sortType: "number",
-  },
-  {
-    Header: (
-      <>
-        わかりやすいと思いますか？
-        <br />
-        <span style={{ fontSize: "8px" }}>
-          (10:わかりやすい-0:わかりにくい)
-        </span>
-      </>
-    ),
-    id: "Q2",
-    accessor: (row) => row.Q2.toFixed(1),
-    sortType: "number",
-  },
-  {
-    Header: (
-      <>
-        今後の演奏に役に立つと思いますか？
-        <br />
-        <span style={{ fontSize: "8px" }}>(10:役に立つ-0:役に立たない)</span>
-      </>
-    ),
-    accessor: (row) => row.Q3.toFixed(1),
-    id: "Q3",
-    sortType: "number",
-  },
-  {
-    Header: (
-      <>
-        今後の演奏に関連しない記載があると思いますか？
-        <br />
-        <span style={{ fontSize: "8px" }}>
-          (10:関連しない記載はない-0:関連しない記載がある)
-        </span>
-      </>
-    ),
-    accessor: (row) => row.Q4.toFixed(1),
-    id: "Q4",
-    sortType: "number",
-  },
-  {
-    Header: (
-      <>
-        曖昧な記載だと思いますか？
-        <br />
-        <span style={{ fontSize: "8px" }}>(10:曖昧でない-0:曖昧である)</span>
-      </>
-    ),
-    accessor: (row) => row.Q5.toFixed(1),
-    id: "Q5",
-    sortType: "number",
-  },
-  {
-    Header: (
-      <>
-        今後の演奏に関連する記載が全て書かれていると思いますか？
-        <br />
-        <span style={{ fontSize: "8px" }}>
-          (10:書かれている-0:書かれていない)
-        </span>
-      </>
-    ),
-    accessor: (row) => row.Q6.toFixed(1),
-    id: "Q6",
-    sortType: "number",
-  },
-  {
-    Header: (
-      <>
-        矛盾がないと思いますか？
-        <br />
-        <span style={{ fontSize: "8px" }}>(10:矛盾はない-0:矛盾がある)</span>
-      </>
-    ),
-    accessor: (row) => row.Q7.toFixed(1),
-    id: "Q7",
-    sortType: "number",
-  },
-  {
-    Header: (
-      <>
-        記載されている内容は演奏を聴くことで検証できると思いますか？
-        <br />
-        <span style={{ fontSize: "8px" }}>(10:検証できる-0:検証できない)</span>
-      </>
-    ),
-    accessor: (row) => row.Q8.toFixed(1),
-    id: "Q8",
-    sortType: "number",
-  },
-  {
-    Header: (
-      <>
-        記載されている内容から該当箇所を楽譜で参照できると思いますか？
-        <br />
-        <span style={{ fontSize: "8px" }}>(10:参照できる-0:参照できない)</span>
-      </>
-    ),
-    accessor: (row) => row.Q9.toFixed(1),
-    id: "Q9",
-    sortType: "number",
-  },
+  ...CritiqueQuestionIDs.map((item) => {
+    const itemContent = {
+      Header: (
+        <>
+          {item}:{CritiqueQuestion[item].body}
+          <br />
+          <span style={{ fontSize: "8px" }}>
+            (10:{CritiqueQuestion[item][10]}-0:
+            {CritiqueQuestion[item][0]})
+          </span>
+        </>
+      ),
+      accessor: (row: CritiqueRecord): string => row[item].toFixed(1),
+      id: item,
+      sortType: "number",
+    };
+    return itemContent;
+  }),
 ];
+// const items =
+
 type Props = {
-  onRowClick: (param: Data) => void;
-  allData: Data[];
-  currentItem: Data;
+  onRowClick: (param: CritiqueRecord) => void;
+  allData: CritiqueRecord[];
+  currentItem: CritiqueRecord;
 };
 
 const CritiqueTable = ({ allData, onRowClick, currentItem }: Props) => {
@@ -160,7 +57,7 @@ const CritiqueTable = ({ allData, onRowClick, currentItem }: Props) => {
   );
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable<Data>(
+    useTable<CritiqueRecord>(
       {
         columns,
         data: allData,
@@ -173,7 +70,7 @@ const CritiqueTable = ({ allData, onRowClick, currentItem }: Props) => {
       useBlockLayout
     );
 
-  const isActive = (row: Data) => {
+  const isActive = (row: CritiqueRecord) => {
     return (
       row.pieceID === currentItem.pieceID &&
       row.playerID === currentItem.playerID &&
