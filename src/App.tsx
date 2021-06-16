@@ -14,7 +14,8 @@ const App = () => {
   return (
     <div className="container">
       <div className="section pb-0">
-        <h1 className="title">Music Critic Dataset</h1>
+        <h1 className="title">CROCUS dataset</h1>
+        <p>CRitique dOCUmentS of music performance</p>
       </div>
       <div className="section">
         <CritiqueTable

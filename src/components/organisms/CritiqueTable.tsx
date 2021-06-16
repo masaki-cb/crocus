@@ -128,7 +128,7 @@ const CritiqueTable = ({ allData, onRowClick, currentItem }: Props) => {
                     {...row.getRowProps()}
                     onClick={() => onRowClick(row.original)}
                     className={
-                      isActive(row.original) ? "has-background-primary" : ""
+                      isActive(row.original) ? "has-background-primary-light" : ""
                     }
                   >
                     {row.cells.map((cell) => {

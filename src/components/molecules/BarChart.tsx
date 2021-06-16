@@ -14,8 +14,8 @@ const BarChart = ({ values, targetVal, itemName }: Props) => {
         borderWidth: 0,
         backgroundColor: values.map((v) => {
           return v === targetVal
-            ? "rgba(255, 0, 0, 1)"
-            : "rgba(255, 159, 64, 0.2)";
+            ? "#6600cc"
+            : "#F5EAFE";
         }),
       },
     ],
