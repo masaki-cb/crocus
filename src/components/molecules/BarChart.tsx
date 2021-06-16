@@ -22,14 +22,14 @@ const BarChart = ({ values, targetVal, itemName }: Props) => {
   };
 
   const options = {
+    animation: {
+      duration: 0,
+    },
     scales: {
-      yAxes: [
-        {
-          ticks: {
-            beginAtZero: true,
-          },
-        },
-      ],
+      y: {
+        max: 10,
+        min: 0,
+      },
     },
     plugins: {
       legend: {

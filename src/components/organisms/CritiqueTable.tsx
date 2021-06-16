@@ -11,8 +11,8 @@ import {
 import styles from "./CritiqueTable.module.scss";
 import { CritiqueRecord } from "../../types/Critique";
 import {
-  CritiqueItemNames,
-  CritiqueItemDescription,
+  CritiqueQuestionIDs,
+  CritiqueQuestion,
 } from "../../consts/Critique";
 // FIXME 列幅調整
 
@@ -20,15 +20,15 @@ const columns: Column<CritiqueRecord>[] = [
   { Header: "pieceID", accessor: "pieceID" },
   { Header: "playerID", accessor: "playerID" },
   { Header: "criticID", accessor: "criticID" },
-  ...CritiqueItemNames.map((item) => {
+  ...CritiqueQuestionIDs.map((item) => {
     const itemContent = {
       Header: (
         <>
-          {item}:{CritiqueItemDescription[item].question}
+          {item}:{CritiqueQuestion[item].body}
           <br />
           <span style={{ fontSize: "8px" }}>
-            (10:{CritiqueItemDescription[item][10]}-0:
-            {CritiqueItemDescription[item][0]})
+            (10:{CritiqueQuestion[item][10]}-0:
+            {CritiqueQuestion[item][0]})
           </span>
         </>
       ),
