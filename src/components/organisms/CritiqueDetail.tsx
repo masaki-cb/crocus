@@ -1,4 +1,4 @@
-import { CritiqueRecord } from "../types";
+import { CritiqueRecord } from "../../types/Critique";
 import styles from "./CritiqueDetail.module.scss";
 
 type Props = { data: CritiqueRecord};

@@ -31,6 +31,11 @@ const BarChart = ({ values, targetVal, itemName }: Props) => {
         },
       ],
     },
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
   };
 
   return <Bar type="" data={data} width={100} height={50} options={options} />;

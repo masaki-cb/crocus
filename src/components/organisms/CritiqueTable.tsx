@@ -1,134 +1,46 @@
 import { useMemo } from "react";
 import { useTable, Column, useSortBy, useBlockLayout } from "react-table";
-import styles from "./CritiqueTable.module.scss";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSort,
   faSortUp,
   faSortDown,
 } from "@fortawesome/free-solid-svg-icons";
-import { CritiqueRecord } from "../types";
+
+import styles from "./CritiqueTable.module.scss";
+import { CritiqueRecord } from "../../types/Critique";
+import {
+  CritiqueItemNames,
+  CritiqueItemDescription,
+} from "../../consts/Critique";
 // FIXME 列幅調整
 
 const columns: Column<CritiqueRecord>[] = [
   { Header: "pieceID", accessor: "pieceID" },
   { Header: "playerID", accessor: "playerID" },
   { Header: "criticID", accessor: "criticID" },
-  {
-    Header: (
-      <>
-        Q1:読みやすいと思いますか？
-        <br />
-        <span style={{ fontSize: "8px" }}>(10:読みやすい-0:読みにくい)</span>
-      </>
-    ),
-    accessor: (row) => row.Q1.toFixed(1),
-    id: "Q1",
-    sortType: "number",
-  },
-  {
-    Header: (
-      <>
-        Q2:わかりやすいと思いますか？
-        <br />
-        <span style={{ fontSize: "8px" }}>
-          (10:わかりやすい-0:わかりにくい)
-        </span>
-      </>
-    ),
-    id: "Q2",
-    accessor: (row) => row.Q2.toFixed(1),
-    sortType: "number",
-  },
-  {
-    Header: (
-      <>
-        Q3:今後の演奏に役に立つと思いますか？
-        <br />
-        <span style={{ fontSize: "8px" }}>(10:役に立つ-0:役に立たない)</span>
-      </>
-    ),
-    accessor: (row) => row.Q3.toFixed(1),
-    id: "Q3",
-    sortType: "number",
-  },
-  {
-    Header: (
-      <>
-        Q4:今後の演奏に関連しない記載があると思いますか？
-        <br />
-        <span style={{ fontSize: "8px" }}>
-          (10:関連しない記載はない-0:関連しない記載がある)
-        </span>
-      </>
-    ),
-    accessor: (row) => row.Q4.toFixed(1),
-    id: "Q4",
-    sortType: "number",
-  },
-  {
-    Header: (
-      <>
-        Q5:曖昧な記載だと思いますか？
-        <br />
-        <span style={{ fontSize: "8px" }}>(10:曖昧でない-0:曖昧である)</span>
-      </>
-    ),
-    accessor: (row) => row.Q5.toFixed(1),
-    id: "Q5",
-    sortType: "number",
-  },
-  {
-    Header: (
-      <>
-        Q6:今後の演奏に関連する記載が全て書かれていると思いますか？
-        <br />
-        <span style={{ fontSize: "8px" }}>
-          (10:書かれている-0:書かれていない)
-        </span>
-      </>
-    ),
-    accessor: (row) => row.Q6.toFixed(1),
-    id: "Q6",
-    sortType: "number",
-  },
-  {
-    Header: (
-      <>
-        Q7:矛盾がないと思いますか？
-        <br />
-        <span style={{ fontSize: "8px" }}>(10:矛盾はない-0:矛盾がある)</span>
-      </>
-    ),
-    accessor: (row) => row.Q7.toFixed(1),
-    id: "Q7",
-    sortType: "number",
-  },
-  {
-    Header: (
-      <>
-        Q8:記載されている内容は演奏を聴くことで検証できると思いますか？
-        <br />
-        <span style={{ fontSize: "8px" }}>(10:検証できる-0:検証できない)</span>
-      </>
-    ),
-    accessor: (row) => row.Q8.toFixed(1),
-    id: "Q8",
-    sortType: "number",
-  },
-  {
-    Header: (
-      <>
-        Q9:記載されている内容から該当箇所を楽譜で参照できると思いますか？
-        <br />
-        <span style={{ fontSize: "8px" }}>(10:参照できる-0:参照できない)</span>
-      </>
-    ),
-    accessor: (row) => row.Q9.toFixed(1),
-    id: "Q9",
-    sortType: "number",
-  },
+  ...CritiqueItemNames.map((item) => {
+    const itemContent = {
+      Header: (
+        <>
+          {item}:{CritiqueItemDescription[item].question}
+          <br />
+          <span style={{ fontSize: "8px" }}>
+            (10:{CritiqueItemDescription[item][10]}-0:
+            {CritiqueItemDescription[item][0]})
+          </span>
+        </>
+      ),
+      accessor: (row: CritiqueRecord): string => row[item].toFixed(1),
+      id: item,
+      sortType: "number",
+    };
+    return itemContent;
+  }),
 ];
+// const items =
+
 type Props = {
   onRowClick: (param: CritiqueRecord) => void;
   allData: CritiqueRecord[];

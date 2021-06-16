@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-import CritiqueTable from "./components/CritiqueTable";
-import CritiqueDetail from "./components/CritiqueDetail";
 import jsonData from "./data.json";
 import styles from "./App.module.scss";
-import { CritiqueRecord } from "./types";
-import ChartZone from "./components/ChartZone";
+import { CritiqueRecord } from "./types/Critique";
+import CritiqueTable from "./components/organisms/CritiqueTable";
+import CritiqueDetail from "./components/organisms/CritiqueDetail";
+import ChartZone from "./components/organisms/ChartZone";
 
 const App = () => {
   const records: CritiqueRecord[] = jsonData;

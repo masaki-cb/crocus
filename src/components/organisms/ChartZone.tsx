@@ -1,22 +1,15 @@
 import { useState } from "react";
-import { CritiqueRecord, CritiqueItemName } from "../types";
-import BarChart from "./BarChart";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+
+import { CritiqueRecord, CritiqueItemName } from "../../types/Critique";
+import BarChart from "../molecules/BarChart";
+import styles from "./ChartZone.module.scss";
 import {
-  faTimes
-} from "@fortawesome/free-solid-svg-icons";
-import styles from './ChartZone.module.scss'
-export const CritiqueItemNames: CritiqueItemName[] = [
-  "Q1",
-  "Q2",
-  "Q3",
-  "Q4",
-  "Q5",
-  "Q6",
-  "Q7",
-  "Q8",
-  "Q9",
-];
+  CritiqueItemDescription,
+  CritiqueItemNames,
+} from "../../consts/Critique";
 
 const ChartZone = ({
   currentCritique,
@@ -33,6 +26,7 @@ const ChartZone = ({
           onClick={() => setCurrentChart(item)}
           className={`column is-one-third clickable ${styles.clickable}`}
         >
+          <h3 className="title is-6 m-0 pb-1">{item}</h3>
           <BarChart
             values={records.map((r) => r[item]).sort()}
             targetVal={currentCritique[item]}
@@ -42,15 +36,21 @@ const ChartZone = ({
       ));
     } else {
       return (
-        <div className='column'>
-          <div
-            onClick={() => {
-              setCurrentChart("");
-            }}
-            className="clickable"
-          >
-            <FontAwesomeIcon icon={faTimes} className='is-size-3'/>
-          </div>
+        <div className="column">
+          <h3 className="title is-5 m-0 pb-1">
+            <span
+              onClick={() => {
+                setCurrentChart("");
+              }}
+              className="clickable"
+            >
+              <FontAwesomeIcon icon={faTimes} className="mr-5" />
+            </span>
+            <span>
+              {currentChart}:{CritiqueItemDescription[currentChart].question}
+            </span>
+          </h3>
+
           <BarChart
             values={records.map((r) => r[currentChart]).sort()}
             targetVal={currentCritique[currentChart]}
