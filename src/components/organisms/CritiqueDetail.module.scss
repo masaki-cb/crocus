@@ -1,5 +1,6 @@
-.audio {
-  @media (max-width: 480px) {
-    width: 200px;
-  }
+@import '../../index.scss';
+.cardContentBody{
+  overflow-y: scroll;
+  height: 19rem;
+  background-color: $scrollable-bg;
 }

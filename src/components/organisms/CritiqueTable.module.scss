@@ -1,5 +1,6 @@
 @import "../../index.scss";
 .cardContent {
+  height: 70vh;
   .tableWrapper {
     overflow-x: scroll;
     .thead{
@@ -9,11 +10,9 @@
     }
     .tbody {
       overflow-y: scroll;
-      height: 40vh;
+      height: 47vh;
       display: block;
-      @media (max-width: 480px) {
-        height: 40vh;
-      }
+      background-color: "#f9f9f9";
     }
   }
 }

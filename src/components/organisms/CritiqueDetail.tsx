@@ -13,12 +13,7 @@ const CritiqueDetail = ({ data }: Props) => {
           <span className="mr-2">講評者ID: {data.criticID}</span>
         </p>
         <div
-          className={`mt-5`}
-          style={{
-            overflowY: "scroll",
-            height: "22.5rem",
-            backgroundColor: "#f9f9f9s",
-          }}
+          className={`mt-5 ${styles.cardContentBody}`}
         >
           <p
             dangerouslySetInnerHTML={{
@@ -26,16 +21,16 @@ const CritiqueDetail = ({ data }: Props) => {
             }}
             className="has-text-justified"
           />
+        </div>
           <audio
             controls
             src={`./Performance_Recordings_mp3/${data.pieceID}-${data.playerID}.mp3`}
-            className={`${styles.audio} mt-5`}
+            className={`mt-5`}
             style={{ width: "100%" }}
           >
             Your browser does not support the
             <code>audio</code> element.
           </audio>
-        </div>
       </div>
     </div>
   );
