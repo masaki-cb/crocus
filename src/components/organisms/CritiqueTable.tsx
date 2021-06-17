@@ -23,7 +23,7 @@ const CritiqueTable = ({ allData, onRowClick, currentItem }: Props) => {
   const defaultColumn = useMemo(
     () => ({
       maxWidth: 300,
-      width: 130,
+      width: 135,
       minWidth: 100,
     }),
     []
@@ -37,9 +37,9 @@ const CritiqueTable = ({ allData, onRowClick, currentItem }: Props) => {
       ...critiqueQuestionIDs.map((item) => {
         const itemContent = {
           Header: (
-            <>
+            <span style={{ whiteSpace: "nowrap" }}>
               {item}:{critiqueQuestion[item].bodyShort}
-            </>
+            </span>
           ),
           accessor: (row: CritiqueRecord): string => row[item].toFixed(1),
           id: item,

@@ -7,7 +7,7 @@ import { CritiqueRecord, CritiqueQuestionID } from "../../types/Critique";
 import BarChart from "../molecules/BarChart";
 import styles from "./ChartZone.module.scss";
 import { critiqueQuestion, critiqueQuestionIDs } from "../../consts/Critique";
-import {  getCritiqueQuestionDescription } from "../../utils/Critique";
+import { getCritiqueQuestionDescription } from "../../utils/Critique";
 
 const ChartZone = ({
   currentCritique,
@@ -26,7 +26,7 @@ const ChartZone = ({
           key={item}
         >
           <h3 className="title is-7 m-0 pb-1">
-            {item}:{critiqueQuestion[item].body}
+            {item}:{critiqueQuestion[item].bodyShort}
           </h3>
           <BarChart
             values={records.map((r) => r[item]).sort()}
@@ -47,7 +47,7 @@ const ChartZone = ({
             >
               <FontAwesomeIcon icon={faTimes} className="mr-3" />
             </span>
-            <span>{currentChart}:</span>
+            <span style={{ whiteSpace: "nowrap" }}>{currentChart}:</span>
             <div className="is-flex is-flex-direction-column">
               <span>{critiqueQuestion[currentChart].body}</span>
               <span className="is-size-7">
