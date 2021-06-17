@@ -12,27 +12,6 @@ import styles from "./CritiqueTable.module.scss";
 import { CritiqueQuestionID, CritiqueRecord } from "../../types/Critique";
 import { critiqueQuestionIDs, critiqueQuestion } from "../../consts/Critique";
 import { getCritiqueQuestionDescription } from "../../utils/Critique";
-// FIXME 列幅調整
-
-const columns: Column<CritiqueRecord>[] = [
-  { Header: "曲ID", accessor: "pieceID", width: 150 },
-  { Header: "演奏者ID", accessor: "playerID" },
-  { Header: "講評者ID", accessor: "criticID" },
-  ...critiqueQuestionIDs.map((item) => {
-    const itemContent = {
-      Header: (
-        <>
-          {item}:{critiqueQuestion[item].bodyShort}
-        </>
-      ),
-      accessor: (row: CritiqueRecord): string => row[item].toFixed(1),
-      id: item,
-      sortType: "number",
-    };
-    return itemContent;
-  }),
-];
-// const items =
 
 type Props = {
   onRowClick: (param: CritiqueRecord) => void;
@@ -47,6 +26,28 @@ const CritiqueTable = ({ allData, onRowClick, currentItem }: Props) => {
       width: 130,
       minWidth: 100,
     }),
+    []
+  );
+
+  const columns = useMemo<Column<CritiqueRecord>[]>(
+    () => [
+      { Header: "曲ID", accessor: "pieceID", width: 150 },
+      { Header: "演奏者ID", accessor: "playerID" },
+      { Header: "講評者ID", accessor: "criticID" },
+      ...critiqueQuestionIDs.map((item) => {
+        const itemContent = {
+          Header: (
+            <>
+              {item}:{critiqueQuestion[item].bodyShort}
+            </>
+          ),
+          accessor: (row: CritiqueRecord): string => row[item].toFixed(1),
+          id: item,
+          sortType: "number",
+        };
+        return itemContent;
+      }),
+    ],
     []
   );
 
@@ -74,12 +75,12 @@ const CritiqueTable = ({ allData, onRowClick, currentItem }: Props) => {
 
   const [openPopupID, setOpenPopupID] =
     useState<CritiqueQuestionID | null>(null);
+
   return (
     <div className={`card`} style={{ height: "100%" }}>
       <div className={`card-content ${styles.cardContent}`}>
         <h2 className="title is-4">批評リスト</h2>
         <p className="is-size-7">
-          {/* Multi-sort applies when shift key is pressed */}
           シフトキーを押した際マルチソートになります。
         </p>
         <div className={styles.tableWrapper}>
@@ -115,9 +116,7 @@ const CritiqueTable = ({ allData, onRowClick, currentItem }: Props) => {
                               </span>
                             </p>
                           </div>
-                        ) : (
-                          ""
-                        )}
+                        ) : null}
                         <div className="column is-11 px-0">
                           {column.render("Header")}
                         </div>
