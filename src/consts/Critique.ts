@@ -1,6 +1,6 @@
-import { CritiqueQuestionName as CritiqueQuestionID } from "../types/Critique";
+import { CritiqueQuestionID } from "../types/Critique";
 
-export const CritiqueQuestionIDs: CritiqueQuestionID[] = [
+export const critiqueQuestionIDs: CritiqueQuestionID[] = [
     "Q1",
     "Q2",
     "Q3",
@@ -12,24 +12,24 @@ export const CritiqueQuestionIDs: CritiqueQuestionID[] = [
     "Q9",
 ];
 
-export const CritiqueQuestion = {
+export const critiqueQuestion = {
     "Q1": {
+        bodyShort:"〇〇性",
+        body: "今後の演奏に役に立つと思いますか？",
+        0: '役に立たない',
+        10: '役に立つ'
+    },
+    "Q2": {
         bodyShort:"〇〇性",
         body: "読みやすいと思いますか？",
         0: '読みにくい',
         10: '読みやすい'
     },
-    "Q2": {
+    "Q3": {
         bodyShort:"〇〇性",
         body: "わかりやすいと思いますか？",
         0: 'わかりにくい',
         10: 'わかりやすい'
-    },
-    "Q3": {
-        bodyShort:"〇〇性",
-        body: "今後の演奏に役に立つと思いますか？",
-        0: '役に立たない',
-        10: '役に立つ'
     },
     "Q4": {
         bodyShort:"〇〇性",
