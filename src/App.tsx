@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 import jsonData from "./data.json";
 import { CritiqueRecord } from "./types/Critique";
@@ -7,13 +7,18 @@ import CritiqueDetail from "./components/organisms/CritiqueDetail";
 import ChartZone from "./components/organisms/ChartZone";
 
 const App = () => {
-  const records: CritiqueRecord[] = jsonData.map(data=>{
-    const temp = data.Q3
-    data.Q3 = data.Q2
-    data.Q2 = data.Q1
-    data.Q1 = temp
-    return data
-  });
+  const records = useMemo<CritiqueRecord[]>(
+    () =>
+      jsonData.map((data) => {
+        const temp = data.Q3;
+        data.Q3 = data.Q2;
+        data.Q2 = data.Q1;
+        data.Q1 = temp;
+        return data;
+      }),
+    []
+  );
+  
   const [currentCritique, setCurrentCritique] = useState(records[0]);
 
   return (
