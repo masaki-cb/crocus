@@ -3,8 +3,8 @@
   height: 70vh;
   .tableWrapper {
     overflow-x: scroll;
-    .thead{
-      .columns{
+    .thead {
+      .columns {
         margin: 0;
       }
     }
@@ -12,7 +12,20 @@
       overflow-y: scroll;
       height: 47vh;
       display: block;
-      background-color: "#f9f9f9";
+      background-color: #f9f9f9;
     }
+  }
+}
+
+.isRelative {
+  position: relative;
+  .toolChip {
+    position: absolute;
+    width: 18rem;
+    top: 3rem;
+    background-color: white;
+    border: #f9f9f9 solid 1px;
+    z-index: 9999;
+    max-width: max-content;
   }
 }

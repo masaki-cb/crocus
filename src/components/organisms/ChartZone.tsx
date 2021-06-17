@@ -3,10 +3,11 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
-import { CritiqueRecord, CritiqueQuestionName } from "../../types/Critique";
+import { CritiqueRecord, CritiqueQuestionID } from "../../types/Critique";
 import BarChart from "../molecules/BarChart";
 import styles from "./ChartZone.module.scss";
-import { CritiqueQuestion, CritiqueQuestionIDs } from "../../consts/Critique";
+import { critiqueQuestion, critiqueQuestionIDs } from "../../consts/Critique";
+import {  getCritiqueQuestionDescription } from "../../utils/Critique";
 
 const ChartZone = ({
   currentCritique,
@@ -15,17 +16,17 @@ const ChartZone = ({
   currentCritique: CritiqueRecord;
   records: CritiqueRecord[];
 }) => {
-  const [currentChart, setCurrentChart] =
-    useState<CritiqueQuestionName | "">("");
+  const [currentChart, setCurrentChart] = useState<CritiqueQuestionID | "">("");
   const renderContent = () => {
     if (currentChart === "") {
-      return CritiqueQuestionIDs.map((item) => (
+      return critiqueQuestionIDs.map((item) => (
         <div
           onClick={() => setCurrentChart(item)}
           className={`column is-one-third clickable is-flex-direction-column ${styles.clickable}`}
+          key={item}
         >
           <h3 className="title is-7 m-0 pb-1">
-            {item}:{CritiqueQuestion[item].body}
+            {item}:{critiqueQuestion[item].body}
           </h3>
           <BarChart
             values={records.map((r) => r[item]).sort()}
@@ -48,10 +49,9 @@ const ChartZone = ({
             </span>
             <span>{currentChart}:</span>
             <div className="is-flex is-flex-direction-column">
-              <span>{CritiqueQuestion[currentChart].body}</span>
+              <span>{critiqueQuestion[currentChart].body}</span>
               <span className="is-size-7">
-                10:{CritiqueQuestion[currentChart][10]}
-                -0:{CritiqueQuestion[currentChart][0]}
+                {getCritiqueQuestionDescription(critiqueQuestion[currentChart])}
               </span>
             </div>
           </h3>

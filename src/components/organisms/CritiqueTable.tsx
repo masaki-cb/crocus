@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useTable, Column, useSortBy, useBlockLayout } from "react-table";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,19 +9,20 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./CritiqueTable.module.scss";
-import { CritiqueRecord } from "../../types/Critique";
-import { CritiqueQuestionIDs, CritiqueQuestion } from "../../consts/Critique";
+import { CritiqueQuestionID, CritiqueRecord } from "../../types/Critique";
+import { critiqueQuestionIDs, critiqueQuestion } from "../../consts/Critique";
+import { getCritiqueQuestionDescription } from "../../utils/Critique";
 // FIXME 列幅調整
 
 const columns: Column<CritiqueRecord>[] = [
   { Header: "曲ID", accessor: "pieceID", width: 150 },
   { Header: "演奏者ID", accessor: "playerID" },
   { Header: "講評者ID", accessor: "criticID" },
-  ...CritiqueQuestionIDs.map((item) => {
+  ...critiqueQuestionIDs.map((item) => {
     const itemContent = {
       Header: (
         <>
-          {item}:{CritiqueQuestion[item].bodyShort}
+          {item}:{critiqueQuestion[item].bodyShort}
         </>
       ),
       accessor: (row: CritiqueRecord): string => row[item].toFixed(1),
@@ -70,6 +71,9 @@ const CritiqueTable = ({ allData, onRowClick, currentItem }: Props) => {
       row.criticID === currentItem.criticID
     );
   };
+
+  const [openPopupID, setOpenPopupID] =
+    useState<CritiqueQuestionID | null>(null);
   return (
     <div className={`card`} style={{ height: "100%" }}>
       <div className={`card-content ${styles.cardContent}`}>
@@ -87,7 +91,33 @@ const CritiqueTable = ({ allData, onRowClick, currentItem }: Props) => {
                     <th
                       {...column.getHeaderProps(column.getSortByToggleProps())}
                     >
-                      <div className={`columns is-mobile ${styles.columns}`}>
+                      <div
+                        className={`columns is-mobile ${styles.columns} ${styles.isRelative}`}
+                        onMouseEnter={() => {
+                          if (
+                            critiqueQuestionIDs.includes(
+                              column.id as CritiqueQuestionID
+                            )
+                          )
+                            setOpenPopupID(column.id as CritiqueQuestionID);
+                        }}
+                        onMouseLeave={() => setOpenPopupID(null)}
+                      >
+                        {column.id === openPopupID ? (
+                          <div className={`${styles.toolChip} card p-2`}>
+                            <p>
+                              {critiqueQuestion[openPopupID].body}
+                              <br />
+                              <span className="is-size-7">
+                                {getCritiqueQuestionDescription(
+                                  critiqueQuestion[openPopupID]
+                                )}
+                              </span>
+                            </p>
+                          </div>
+                        ) : (
+                          ""
+                        )}
                         <div className="column is-11 px-0">
                           {column.render("Header")}
                         </div>
