@@ -18,19 +18,28 @@ const App = () => {
         <p>CRitique dOCUmentS of music performance</p>
       </div>
       <div className="section">
-        <CritiqueTable
-          onRowClick={(c) => setCurrentCritique(c)}
-          allData={records}
-          currentItem={currentCritique}
-        />
-        <div className={`columns mt-5 ${styles.columns}`}>
-          <div className="column is-two-thirds-desktop">
-            <ChartZone records={records} currentCritique={currentCritique} />
+
+        <div className={`columns`}>
+          <div
+            className="column  is-two-thirds-desktop"
+            style={{ overflowX: "scroll" }}
+          >
+            <CritiqueTable
+              onRowClick={(c) => setCurrentCritique(c)}
+              allData={records}
+              currentItem={currentCritique}
+            />
           </div>
+
           <div className="column">
             <CritiqueDetail data={currentCritique} />
           </div>
+          <div className="column is-half-desktop">
+            <ChartZone records={records} currentCritique={currentCritique} />
+          </div>
         </div>
+
+        <ChartZone records={records} currentCritique={currentCritique} />
       </div>
     </div>
   );

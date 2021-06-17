@@ -1,7 +1,7 @@
 import { CritiqueRecord } from "../../types/Critique";
 import styles from "./CritiqueDetail.module.scss";
 
-type Props = { data: CritiqueRecord};
+type Props = { data: CritiqueRecord };
 const CritiqueDetail = ({ data }: Props) => {
   return (
     <div className="card" style={{ height: "100%" }}>
@@ -10,9 +10,12 @@ const CritiqueDetail = ({ data }: Props) => {
         style={{ height: "100%", overflowY: "scroll" }}
       >
         <h2 className="title is-4">Critique Detail</h2>
-        <p className="is-size-4">criticID: {data.criticID}</p>
-        <p className="is-size-6">playerID: {data.playerID}</p>
-        <p className="is-size-6">pieceID: {data.pieceID}</p>
+        <p className="is-size-6">
+          <span className="mr-2">曲ID: {data.pieceID}, </span>
+          <span className="mr-2">演奏者ID: {data.playerID}, </span>
+          <span className="mr-2">講評者ID: {data.criticID}</span>
+        </p>
+
         <p
           dangerouslySetInnerHTML={{
             __html: data.content.replaceAll("\n", "<br />"),
@@ -28,12 +31,12 @@ const CritiqueDetail = ({ data }: Props) => {
           <code>audio</code> element.
         </audio>
         <div className="mt-5">
-          <object
+          {/* <object
             data={`./Music_Score/${data.pieceID}.pdf`}
             type="application/pdf"
             width="100%"
             height="500px"
-          >
+          > */}
             <p>
               <a
                 href={`./Music_Score/${data.pieceID}.pdf`}
@@ -43,7 +46,7 @@ const CritiqueDetail = ({ data }: Props) => {
                 Download Piece PDF
               </a>
             </p>
-          </object>
+          {/* </object> */}
         </div>
       </div>
     </div>

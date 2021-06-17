@@ -17,19 +17,19 @@ import {
 // FIXME 列幅調整
 
 const columns: Column<CritiqueRecord>[] = [
-  { Header: "pieceID", accessor: "pieceID" },
-  { Header: "playerID", accessor: "playerID" },
-  { Header: "criticID", accessor: "criticID" },
+  { Header: "曲ID", accessor: "pieceID" },
+  { Header: "演奏者ID", accessor: "playerID" },
+  { Header: "講評者ID", accessor: "criticID" },
   ...CritiqueQuestionIDs.map((item) => {
     const itemContent = {
       Header: (
         <>
-          {item}:{CritiqueQuestion[item].body}
-          <br />
+          {item}:{CritiqueQuestion[item].bodyShort}
+          {/* <br />
           <span style={{ fontSize: "8px" }}>
             (10:{CritiqueQuestion[item][10]}-0:
             {CritiqueQuestion[item][0]})
-          </span>
+          </span> */}
         </>
       ),
       accessor: (row: CritiqueRecord): string => row[item].toFixed(1),
@@ -80,9 +80,10 @@ const CritiqueTable = ({ allData, onRowClick, currentItem }: Props) => {
   return (
     <div className={`card`} style={{ height: "100%" }}>
       <div className={`card-content ${styles.cardContent}`}>
-        <h2 className="title is-4">Critique List</h2>
+        <h2 className="title is-4">批評リスト</h2>
         <p className="is-size-7">
-          Multi-sort applies when shift key is pressed
+          {/* Multi-sort applies when shift key is pressed */}
+          シフトキーを押した際マルチソートになります。
         </p>
         <div className={styles.tableWrapper}>
           <table className={`table is-hoverable`} {...getTableProps()}>
@@ -128,7 +129,7 @@ const CritiqueTable = ({ allData, onRowClick, currentItem }: Props) => {
                     {...row.getRowProps()}
                     onClick={() => onRowClick(row.original)}
                     className={
-                      isActive(row.original) ? "has-background-primary-light" : ""
+                      `${isActive(row.original) ? "has-background-primary-light" : ""} is-clickable`
                     }
                   >
                     {row.cells.map((cell) => {
