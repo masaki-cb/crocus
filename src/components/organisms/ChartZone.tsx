@@ -6,10 +6,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { CritiqueRecord, CritiqueQuestionName } from "../../types/Critique";
 import BarChart from "../molecules/BarChart";
 import styles from "./ChartZone.module.scss";
-import {
-  CritiqueQuestion,
-  CritiqueQuestionIDs,
-} from "../../consts/Critique";
+import { CritiqueQuestion, CritiqueQuestionIDs } from "../../consts/Critique";
 
 const ChartZone = ({
   currentCritique,
@@ -18,7 +15,8 @@ const ChartZone = ({
   currentCritique: CritiqueRecord;
   records: CritiqueRecord[];
 }) => {
-  const [currentChart, setCurrentChart] = useState<CritiqueQuestionName | "">("");
+  const [currentChart, setCurrentChart] =
+    useState<CritiqueQuestionName | "">("");
   const renderContent = () => {
     if (currentChart === "") {
       return CritiqueQuestionIDs.map((item) => (
@@ -48,13 +46,9 @@ const ChartZone = ({
             >
               <FontAwesomeIcon icon={faTimes} className="mr-3" />
             </span>
-            <span>
-            {currentChart}:
-            </span>
+            <span>{currentChart}:</span>
             <div className="is-flex is-flex-direction-column">
-              <span>
-                {CritiqueQuestion[currentChart].body}
-              </span>
+              <span>{CritiqueQuestion[currentChart].body}</span>
               <span className="is-size-7">
                 10:{CritiqueQuestion[currentChart][10]}
                 -0:{CritiqueQuestion[currentChart][0]}
@@ -71,7 +65,7 @@ const ChartZone = ({
     }
   };
   return (
-    <div className="card">
+    <div className="card" style={{ height: "100%" }}>
       <div className="card-content">
         <div className="columns is-multiline ">{renderContent()}</div>
       </div>

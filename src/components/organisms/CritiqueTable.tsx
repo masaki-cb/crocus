@@ -10,14 +10,11 @@ import {
 
 import styles from "./CritiqueTable.module.scss";
 import { CritiqueRecord } from "../../types/Critique";
-import {
-  CritiqueQuestionIDs,
-  CritiqueQuestion,
-} from "../../consts/Critique";
+import { CritiqueQuestionIDs, CritiqueQuestion } from "../../consts/Critique";
 // FIXME 列幅調整
 
 const columns: Column<CritiqueRecord>[] = [
-  { Header: "曲ID", accessor: "pieceID" },
+  { Header: "曲ID", accessor: "pieceID", width: 150 },
   { Header: "演奏者ID", accessor: "playerID" },
   { Header: "講評者ID", accessor: "criticID" },
   ...CritiqueQuestionIDs.map((item) => {
@@ -25,11 +22,6 @@ const columns: Column<CritiqueRecord>[] = [
       Header: (
         <>
           {item}:{CritiqueQuestion[item].bodyShort}
-          {/* <br />
-          <span style={{ fontSize: "8px" }}>
-            (10:{CritiqueQuestion[item][10]}-0:
-            {CritiqueQuestion[item][0]})
-          </span> */}
         </>
       ),
       accessor: (row: CritiqueRecord): string => row[item].toFixed(1),
@@ -51,6 +43,7 @@ const CritiqueTable = ({ allData, onRowClick, currentItem }: Props) => {
   const defaultColumn = useMemo(
     () => ({
       maxWidth: 300,
+      width: 130,
       minWidth: 100,
     }),
     []
@@ -128,9 +121,11 @@ const CritiqueTable = ({ allData, onRowClick, currentItem }: Props) => {
                   <tr
                     {...row.getRowProps()}
                     onClick={() => onRowClick(row.original)}
-                    className={
-                      `${isActive(row.original) ? "has-background-primary-light" : ""} is-clickable`
-                    }
+                    className={`${
+                      isActive(row.original)
+                        ? "has-background-primary-light"
+                        : ""
+                    } is-clickable`}
                   >
                     {row.cells.map((cell) => {
                       return (

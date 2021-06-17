@@ -12,36 +12,56 @@ const App = () => {
   const [currentCritique, setCurrentCritique] = useState(records[0]);
 
   return (
-    <div className="container">
-      <div className="section pb-0">
-        <h1 className="title">CROCUS dataset</h1>
-        <p>CRitique dOCUmentS of music performance</p>
-      </div>
-      <div className="section">
-
-        <div className={`columns`}>
-          <div
-            className="column  is-two-thirds-desktop"
-            style={{ overflowX: "scroll" }}
-          >
-            <CritiqueTable
-              onRowClick={(c) => setCurrentCritique(c)}
-              allData={records}
-              currentItem={currentCritique}
-            />
+    <>
+      <div className="container">
+        <div className="section pb-0">
+          <h1 className="title">CROCUS dataset</h1>
+          <p>CRitique dOCUmentS of music performance</p>
+        </div>
+        <div className="section">
+          <div className={`columns`}>
+            <div className="column  is-8">
+              <CritiqueTable
+                onRowClick={(c) => setCurrentCritique(c)}
+                allData={records}
+                currentItem={currentCritique}
+              />
+            </div>
+            <div className="column">
+              <CritiqueDetail data={currentCritique} />
+            </div>
           </div>
-
-          <div className="column">
-            <CritiqueDetail data={currentCritique} />
-          </div>
-          <div className="column is-half-desktop">
-            <ChartZone records={records} currentCritique={currentCritique} />
+          <div className={`columns`}>
+            <div className="column is-7">
+              <ChartZone records={records} currentCritique={currentCritique} />
+            </div>
+            <div className="column ">
+              <div className="card">
+                <div className="card-content">
+                  <object
+                    data={`./Music_Score/${currentCritique.pieceID}.pdf`}
+                    type="application/pdf"
+                    width="100%"
+                    height="500px"
+                  >
+                    <p>
+                      <a
+                        href={`./Music_Score/${currentCritique.pieceID}.pdf`}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Download Piece PDF
+                      </a>
+                    </p>
+                  </object>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-
-        <ChartZone records={records} currentCritique={currentCritique} />
       </div>
-    </div>
+      <footer className="footer">Footer</footer>
+    </>
   );
 };
 export default App;
