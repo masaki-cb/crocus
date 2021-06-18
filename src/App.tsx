@@ -8,14 +8,14 @@ import ChartZone from "./components/organisms/ChartZone";
 import Icon from "./CROCUS_small.png";
 
 const App = () => {
-  const records:CritiqueRecord[] = jsonData
+  const records: CritiqueRecord[] = jsonData;
 
   const [currentCritique, setCurrentCritique] = useState(records[0]);
 
   return (
     <>
-      <div className="container">
-        <div className="section pb-0">
+      <div className="section pb-0">
+        <div className="container">
           <h1 className="title">
             <figure
               className="image is-inline-block is-48x48"
@@ -52,7 +52,9 @@ const App = () => {
             </span>
           </p>
         </div>
-        <div className="section">
+      </div>
+      <div className="section">
+        <div className="container">
           <div className={`columns`}>
             <div className="column  is-8">
               <CritiqueTable
