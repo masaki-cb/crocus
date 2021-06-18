@@ -1,9 +1,14 @@
-$primary: #6600cc;
-$scrollable-bg:#f9f9f9;
+$primary: #7957b7;
+$scrollable-bg: #f9f9f9;
 
 html {
   height: 100%;
 }
+
+a {
+  color: $primary !important;
+}
+
 #root {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -26,5 +31,14 @@ code {
     cursor: pointer;
   }
 }
-
 @import "../node_modules/bulma/bulma.sass";
+
+.is-no-wrap-tablet {
+  @media screen and (min-width: $tablet) {
+    white-space: nowrap;
+  }
+}
+
+.is-no-wrap {
+  white-space: nowrap;
+}

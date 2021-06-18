@@ -5,6 +5,7 @@ type Props = {
   itemName: string;
 };
 const BarChart = ({ values, targetVal, itemName }: Props) => {
+  let flag = false;
   const data = {
     labels: values.map((r) => ""),
     datasets: [
@@ -13,9 +14,11 @@ const BarChart = ({ values, targetVal, itemName }: Props) => {
         data: values,
         borderWidth: 0,
         backgroundColor: values.map((v) => {
-          return v === targetVal
-            ? "#6600cc"
-            : "#F5EAFE";
+          if (v === targetVal && !flag) {
+            flag = true;
+            return "#281B40";
+          }
+          return "#E8E2F2";
         }),
       },
     ],

@@ -22,7 +22,7 @@ const ChartZone = ({
       return critiqueQuestionIDs.map((item) => (
         <div
           onClick={() => setCurrentChart(item)}
-          className={`column is-one-third clickable is-flex-direction-column ${styles.clickable}`}
+          className={`column is-half-mobile is-half-tablet is-one-third-desktop  clickable is-flex-direction-column ${styles.clickable}`}
           key={item}
         >
           <h3 className="title is-7 m-0 pb-1">
@@ -67,7 +67,7 @@ const ChartZone = ({
   return (
     <div className="card" style={{ height: "100%" }}>
       <div className="card-content">
-        <div className="columns is-multiline ">{renderContent()}</div>
+        <div className="columns is-multiline is-mobile">{renderContent()}</div>
       </div>
     </div>
   );

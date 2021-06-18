@@ -6,7 +6,7 @@ const CritiqueDetail = ({ data }: Props) => {
   return (
     <div className="card" style={{ height: "100%" }}>
       <div className="card-content" style={{ height: "70vh" }}>
-        <h2 className="title is-4">批評詳細</h2>
+        <h2 className="title is-4">講評文書</h2>
         <p className="is-size-6">
           <span className="mr-2">曲ID: {data.pieceID}, </span>
           <span className="mr-2">演奏者ID: {data.playerID}, </span>

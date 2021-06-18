@@ -79,10 +79,13 @@ const CritiqueTable = ({ allData, onRowClick, currentItem }: Props) => {
   return (
     <div className={`card`} style={{ height: "100%" }}>
       <div className={`card-content ${styles.cardContent}`}>
-        <h2 className="title is-4">批評リスト</h2>
-        <p className="is-size-7">
-          シフトキーを押した際マルチソートになります。
-        </p>
+        <h2 className="title is-4">
+          講評文書リスト
+          <span className="is-size-7 ml-2 has-text-weight-normal">
+            シフトキーを押した際マルチソートになります。
+          </span>
+        </h2>
+
         <div className={styles.tableWrapper}>
           <table className={`table is-hoverable`} {...getTableProps()}>
             <thead className={styles.thead}>
@@ -143,7 +146,7 @@ const CritiqueTable = ({ allData, onRowClick, currentItem }: Props) => {
                 </tr>
               ))}
             </thead>
-            <tbody {...getTableBodyProps()} className={styles.tbody}>
+            <tbody {...getTableBodyProps()} className={`${styles.tbody} has-text-centered`}>
               {rows.map((row, i) => {
                 prepareRow(row);
                 return (
@@ -152,7 +155,7 @@ const CritiqueTable = ({ allData, onRowClick, currentItem }: Props) => {
                     onClick={() => onRowClick(row.original)}
                     className={`${
                       isActive(row.original)
-                        ? "has-background-primary-light"
+                        ? "has-background-primary has-text-light"
                         : ""
                     } is-clickable`}
                   >
