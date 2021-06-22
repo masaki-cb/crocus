@@ -20,7 +20,7 @@ const ChartZone = ({
   lang: "ja" | "en";
 }) => {
   const [currentChart, setCurrentChart] = useState<CritiqueQuestionID | "">("");
-  const [t, i18n] = useTranslation();
+  const [, i18n] = useTranslation();
   useEffect(() => {
     i18n.changeLanguage(lang);
   }, [lang, i18n]);
