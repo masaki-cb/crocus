@@ -1,6 +1,7 @@
-import { useMemo, useState } from "react";
-import { useTable, Column, useSortBy, useBlockLayout } from "react-table";
+import { useMemo, useState, useEffect } from "react";
 
+import { useTable, Column, useSortBy, useBlockLayout } from "react-table";
+import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSort,
@@ -17,9 +18,16 @@ type Props = {
   onRowClick: (param: CritiqueRecord) => void;
   allData: CritiqueRecord[];
   currentItem: CritiqueRecord;
+  lang: "ja" | "en";
 };
 
-const CritiqueTable = ({ allData, onRowClick, currentItem }: Props) => {
+const CritiqueTable = ({ allData, onRowClick, currentItem, lang }: Props) => {
+  const [t, i18n] = useTranslation();
+
+  useEffect(() => {
+    i18n.changeLanguage(lang);
+  }, [lang, i18n]);
+
   const defaultColumn = useMemo(
     () => ({
       maxWidth: 300,
@@ -31,14 +39,14 @@ const CritiqueTable = ({ allData, onRowClick, currentItem }: Props) => {
 
   const columns = useMemo<Column<CritiqueRecord>[]>(
     () => [
-      { Header: "曲ID", accessor: "pieceID", width: 150 },
-      { Header: "演奏者ID", accessor: "playerID" },
-      { Header: "講評者ID", accessor: "criticID" },
+      { Header: t("曲ID").toString(), accessor: "pieceID", width: 150 },
+      { Header: t("演奏者ID").toString(), accessor: "playerID" },
+      { Header: t("講評者ID").toString(), accessor: "criticID" },
       ...critiqueQuestionIDs.map((item) => {
         const itemContent = {
           Header: (
             <span style={{ whiteSpace: "nowrap" }}>
-              {item}:{critiqueQuestion[item].bodyShort}
+              {item}:{t(`${critiqueQuestion(i18n)[item].bodyShort}`)}
             </span>
           ),
           accessor: (row: CritiqueRecord): string => row[item].toFixed(1),
@@ -48,7 +56,7 @@ const CritiqueTable = ({ allData, onRowClick, currentItem }: Props) => {
         return itemContent;
       }),
     ],
-    []
+    [t]
   );
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
@@ -57,9 +65,6 @@ const CritiqueTable = ({ allData, onRowClick, currentItem }: Props) => {
         columns,
         data: allData,
         defaultColumn,
-        // isMultiSortEvent: (me: React.MouseEvent) => {
-        //   return true;
-        // },
       },
       useSortBy,
       useBlockLayout
@@ -80,12 +85,11 @@ const CritiqueTable = ({ allData, onRowClick, currentItem }: Props) => {
     <div className={`card`} style={{ height: "100%" }}>
       <div className={`card-content ${styles.cardContent}`}>
         <h2 className="title is-4">
-          講評文書リスト
+          {t("講評文書リスト")}
           <span className="is-size-7 ml-2 has-text-weight-normal">
-            シフトキーを押した際マルチソートになります。
+            {t("シフトキーを押した際マルチソートになります。")}
           </span>
         </h2>
-
         <div className={styles.tableWrapper}>
           <table className={`table is-hoverable`} {...getTableProps()}>
             <thead className={styles.thead}>
@@ -110,11 +114,11 @@ const CritiqueTable = ({ allData, onRowClick, currentItem }: Props) => {
                         {column.id === openPopupID ? (
                           <div className={`${styles.toolChip} card p-2`}>
                             <p>
-                              {critiqueQuestion[openPopupID].body}
+                              {critiqueQuestion(i18n)[openPopupID].body}
                               <br />
                               <span className="is-size-7">
                                 {getCritiqueQuestionDescription(
-                                  critiqueQuestion[openPopupID]
+                                  critiqueQuestion(i18n)[openPopupID]
                                 )}
                               </span>
                             </p>
@@ -146,7 +150,10 @@ const CritiqueTable = ({ allData, onRowClick, currentItem }: Props) => {
                 </tr>
               ))}
             </thead>
-            <tbody {...getTableBodyProps()} className={`${styles.tbody} has-text-centered`}>
+            <tbody
+              {...getTableBodyProps()}
+              className={`${styles.tbody} has-text-centered`}
+            >
               {rows.map((row, i) => {
                 prepareRow(row);
                 return (
