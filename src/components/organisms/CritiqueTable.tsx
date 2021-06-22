@@ -56,7 +56,7 @@ const CritiqueTable = ({ allData, onRowClick, currentItem, lang }: Props) => {
         return itemContent;
       }),
     ],
-    [t]
+    [t, i18n]
   );
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
