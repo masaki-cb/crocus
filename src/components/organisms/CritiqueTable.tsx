@@ -46,7 +46,7 @@ const CritiqueTable = ({ allData, onRowClick, currentItem, lang }: Props) => {
         const itemContent = {
           Header: (
             <span style={{ whiteSpace: "nowrap" }}>
-              {item}:{t(`${critiqueQuestion(i18n)[item].bodyShort}`)}
+              {item}:{`${critiqueQuestion(i18n)[item].bodyShort}`}
             </span>
           ),
           accessor: (row: CritiqueRecord): string => row[item].toFixed(1),
