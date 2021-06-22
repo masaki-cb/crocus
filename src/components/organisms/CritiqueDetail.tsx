@@ -34,6 +34,19 @@ const CritiqueDetail = ({ data, lang }: Props) => {
             }}
             className="has-text-justified"
           />
+          {lang !== "ja" ? (
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href={`https://translate.google.com/?hl=ja&sl=ja&tl=en&text=${encodeURIComponent(
+                data.content
+              )}&op=translate`}
+            >
+              <p>Translate on Google</p>
+            </a>
+          ) : (
+            <></>
+          )}
         </div>
         <audio
           controls
