@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
@@ -8,42 +8,58 @@ type Props = {
 };
 const Navbar = ({ lang, setLang }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
-
+  useEffect(() => {
+    document.getElementById("root")?.addEventListener("click", (e) => {
+      const target = e.target as HTMLElement;
+      console.log(target);
+      if (target.id !== "dropdown-trigger") setIsOpen(false);
+    });
+  }, []);
   return (
-    <div
-      className={`dropdown is-right ${isOpen ? "is-active" : ""}`}
-      style={{ position: "fixed", right: "1rem", top: "3rem", zIndex: 99 }}
-    >
-      <div className="dropdown-trigger" aria-controls="dropdown-menu">
-        <button onClick={() => setIsOpen(!isOpen)} className="button">
-          Language{" "}
-          <span className="icon is-small mx-1">
-            <FontAwesomeIcon icon={faAngleDown} />
-          </span>
-        </button>
-      </div>
-      <div className="dropdown-menu" id="dropdown-menu" role="menu">
-        <div className="dropdown-content">
-          <div
-            onClick={() => setLang("en")}
-            className={`dropdown-item ${
-              lang === "en"
-                ? "has-background-primary has-text-primary-light"
-                : ""
-            }`}
-          >
-            English
-          </div>
-          <div onClick={() => setLang("ja")} className={`dropdown-item ${
-              lang === "ja"
-                ? "has-background-primary has-text-primary-light"
-                : ""
-            }`}>
-            日本語
+    <nav className="navbar">
+      <div className="navbar-end">
+      <div
+        className={`dropdown navbar-item is-right ${isOpen ? "is-active" : ""}`}
+        onClick={(e) => {
+          setIsOpen(!isOpen);
+        }}
+      >
+        <div onClick={()=>setIsOpen(false)} className="dropdown-trigger" aria-controls="dropdown-menu">
+          <button className="button" id="dropdown-trigger">
+            Language{" "}
+            <span className="icon is-small mx-1">
+              <FontAwesomeIcon icon={faAngleDown} />
+            </span>
+          </button>
+        </div>
+        <div className="dropdown-menu" id="dropdown-menu" role="menu">
+          <div className="dropdown-content">
+            <div
+              onClick={() => setLang("en")}
+              className={`dropdown-item ${
+                lang === "en"
+                  ? "has-background-primary has-text-primary-light"
+                  : ""
+              }`}
+            >
+              English
+            </div>
+            <div
+              onClick={() => setLang("ja")}
+              className={`dropdown-item ${
+                lang === "ja"
+                  ? "has-background-primary has-text-primary-light"
+                  : ""
+              }`}
+            >
+              日本語
+            </div>
           </div>
         </div>
       </div>
-    </div>
+   
+      </div>
+     </nav>
   );
 };
 export default Navbar;
