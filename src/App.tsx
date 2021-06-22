@@ -7,6 +7,7 @@ import { CritiqueRecord } from "./types/Critique";
 import CritiqueTable from "./components/organisms/CritiqueTable";
 import CritiqueDetail from "./components/organisms/CritiqueDetail";
 import ChartZone from "./components/organisms/ChartZone";
+import Navbar from "./components/organisms/Navbar";
 import Icon from "./CROCUS_small.png";
 
 const App = () => {
@@ -14,22 +15,16 @@ const App = () => {
 
   const [currentCritique, setCurrentCritique] = useState(records[0]);
   const [t, i18n] = useTranslation();
-  const [lang, setLang] = useState<'en'|'ja'>("ja");
+  const [lang, setLang] = useState<"en" | "ja">("ja");
   useEffect(() => {
     i18n.changeLanguage(lang);
   }, [lang, i18n]);
 
   return (
     <>
+      <Navbar lang={lang} setLang={(p) => setLang(p)} />
       <div className="section pb-0">
         <div className="container">
-          <button
-            onClick={() => {
-              setLang(lang === "en" ? "ja" : "en");
-            }}
-          >
-            {lang === "en" ? "ja" : "en"}
-          </button>
           <h1 className="title">
             <figure
               className="image is-inline-block is-48x48"
@@ -38,9 +33,7 @@ const App = () => {
               <img src={Icon} alt="flower icon" />
             </figure>
             <span style={{ verticalAlign: "middle" }}>
-              <p>
-                CROCUS (CRitique dOCUmentS): {t("音楽演奏講評データセット")}
-              </p>
+              CROCUS (CRitique dOCUmentS): {t("音楽演奏講評データセット")}
             </span>
           </h1>
           <p className="mb-4">
@@ -69,7 +62,8 @@ const App = () => {
             <span className="is-no-wrap-tablet">
               {t(
                 "演奏講評文書データベースの構築および講評文書の構造と効用の関係"
-              )}.
+              )}
+              .
             </span>
             <span className="is-no-wrap-tablet">
               {t("情報処理学会第131回音楽情報科学研究会, 2021")}
@@ -94,7 +88,11 @@ const App = () => {
           </div>
           <div className={`columns`}>
             <div className="column is-7">
-              <ChartZone records={records} currentCritique={currentCritique} lang={lang} />
+              <ChartZone
+                records={records}
+                currentCritique={currentCritique}
+                lang={lang}
+              />
             </div>
             <div className="column ">
               <div className="card">
