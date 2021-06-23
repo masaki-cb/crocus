@@ -109,7 +109,7 @@ const App = () => {
                         target="_blank"
                         rel="noreferrer"
                       >
-                        {t("Download Piece PDF")}
+                        {t("楽譜をダウンロード")}
                       </a>
                     </p>
                   </object>
