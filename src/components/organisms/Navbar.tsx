@@ -16,8 +16,8 @@ const Navbar = ({ lang, setLang }: Props) => {
     });
   }, []);
   return (
-    <nav className="navbar">
-      <div className="navbar-end">
+    <nav className="navbar is-flex is-flex-direction-row-reverse">
+      <div>
       <div
         className={`dropdown navbar-item is-right ${isOpen ? "is-active" : ""}`}
         onClick={(e) => {

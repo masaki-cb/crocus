@@ -19,7 +19,7 @@ i18n.use(initReactI18next).init({
     },
   },
   initImmediate: false,
-  lng: 'ja',
+  lng: 'en',
   interpolation: { escapeValue: false },
   saveMissing: true,
   // fallbackLng: 'ja', 

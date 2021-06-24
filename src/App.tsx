@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 
 import { useTranslation } from "react-i18next";
@@ -16,8 +17,10 @@ const App = () => {
   const [currentCritique, setCurrentCritique] = useState(records[0]);
   const [t, i18n] = useTranslation();
   const [lang, setLang] = useState<"en" | "ja">("en");
+
   useEffect(() => {
     i18n.changeLanguage(lang);
+    document.title = "CROCUS: " + t("音楽演奏講評データセット");
   }, [lang, i18n]);
 
   return (
@@ -25,7 +28,7 @@ const App = () => {
       <Navbar lang={lang} setLang={(p) => setLang(p)} />
       <div className="section pb-0">
         <div className="container">
-          <h1 className="title">
+          <h1 className="title is-size-6-mobile is-size-5-touch is-size-3-desktop  ">
             <figure
               className="image is-inline-block is-48x48"
               style={{ verticalAlign: "middle" }}
@@ -33,7 +36,15 @@ const App = () => {
               <img src={Icon} alt="flower icon" />
             </figure>
             <span style={{ verticalAlign: "middle" }}>
-              CROCUS (CRitique dOCUmentS): {t("音楽演奏講評データセット")}
+              <span style={{ whiteSpace: "nowrap" }}>
+                CROCUS (CRitique dOCUmentS):
+              </span>
+              <span
+                style={{ whiteSpace: "nowrap" }}
+                className="is-size-6-mobile"
+              >
+                {t("音楽演奏講評データセット")}
+              </span>
             </span>
           </h1>
           <p className="mb-4">
