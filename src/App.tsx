@@ -15,7 +15,7 @@ const App = () => {
 
   const [currentCritique, setCurrentCritique] = useState(records[0]);
   const [t, i18n] = useTranslation();
-  const [lang, setLang] = useState<"en" | "ja">("ja");
+  const [lang, setLang] = useState<"en" | "ja">("en");
   useEffect(() => {
     i18n.changeLanguage(lang);
   }, [lang, i18n]);
@@ -37,9 +37,8 @@ const App = () => {
             </span>
           </h1>
           <p className="mb-4">
-            CROCUS(CRitique dOCUmentS)
             {t(
-              "音楽演奏講評データセットは音楽教育研究のための公開データです。複数の楽器奏者による音楽演奏とその演奏に対する複数の指導者による講評文書が収められています。"
+              "CROCUS(CRitique dOCUmentS) 音楽演奏講評データセットは音楽教育研究のための公開データです。複数の楽器奏者による音楽演奏とその演奏に対する複数の指導者による講評文書が収められています。"
             )}
             <br />
             {t(
@@ -56,18 +55,14 @@ const App = () => {
           <p className="mb-0">
             <span className="title is-5">{t("発表文献")}</span>
             <br />
-            <span className="is-no-wrap-tablet">
-              {t("松原正樹, 辻功, 平野剛, 香川璃奈")}:
-            </span>
-            <span className="is-no-wrap-tablet">
+            <span>{t("松原正樹, 辻功, 平野剛, 香川璃奈")}:</span>
+            <span>
               {t(
                 "演奏講評文書データベースの構築および講評文書の構造と効用の関係"
               )}
               .
             </span>
-            <span className="is-no-wrap-tablet">
-              {t("情報処理学会第131回音楽情報科学研究会, 2021")}
-            </span>
+            <span>{t("情報処理学会第131回音楽情報科学研究会, 2021")}</span>
           </p>
         </div>
       </div>
@@ -128,9 +123,9 @@ const App = () => {
                 <li>
                   <span className=".is-no-wrap ">
                     <a href="https://www.slis.tsukuba.ac.jp/~masaki">
-                      {t("松原 正樹")}
+                      {t("松原 正樹")}{" "}
                     </a>
-                    {t("（筑波大学）")}
+                    {t("（筑波大学）")}{" "}
                     <address className="is-inline-block">
                       masaki[at]slis.tsukuba.ac[dot]jp
                     </address>

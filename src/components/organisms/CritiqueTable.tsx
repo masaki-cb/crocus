@@ -92,7 +92,7 @@ const CritiqueTable = ({ allData, onRowClick, currentItem, lang }: Props) => {
         </h2>
         <div className={styles.tableWrapper}>
           <table className={`table is-hoverable`} {...getTableProps()}>
-            <thead className={styles.thead}>
+            <thead className={`${styles.thead} ${lang==='en'?'is-size-7':''}`}>
               {headerGroups.map((headerGroup) => (
                 <tr {...headerGroup.getHeaderGroupProps()}>
                   {headerGroup.headers.map((column) => (

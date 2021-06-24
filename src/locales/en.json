@@ -1,4 +1,5 @@
 {
+  "CROCUS(CRitique dOCUmentS) 音楽演奏講評データセットは音楽教育研究のための公開データです。複数の楽器奏者による音楽演奏とその演奏に対する複数の指導者による講評文書が収められています。": "The CROCUS(CRitique dOCUmentS), a datset of music performance critique, is a open dataset for music education research. It contains 90 musical performances by 9 players and 239 critique documents written by 12 teachers.",
   "わかりにくい": "Not Understandable",
   "わかりやすい": "Understandable",
   "わかりやすいと思いますか？": "is understandable?",
@@ -57,7 +58,6 @@
   "関連性": "Relevance",
   "非曖昧性": "Unambiguity",
   "音楽演奏講評データセット": "Dataset of Music Performance Critique",
-  "音楽演奏講評データセットは音楽教育研究のための公開データです。複数の楽器奏者による音楽演奏とその演奏に対する複数の指導者による講評文書が収められています。": "The CROCUS(CRitique dOCUmentS), a datset of music performance critique, is a open dataset for music education research. It contains 90 musical performances by 9 players and 239 critique documents written by 12 teachers.",
   "香川璃奈（筑波大学）": "Rina Kagawa (University of Tsukuba)",
   "（現在はオーボエ演奏に対する講評文書のみ収録中）": "(Meanwhile, only for Oboe)",
   "（筑波大学）": "(University of Tsukuba)"
