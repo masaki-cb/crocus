@@ -55,7 +55,7 @@ const ChartZone = ({
             >
               <FontAwesomeIcon icon={faTimes} className="mr-3" />
             </span>
-            <span style={{ whiteSpace: "nowrap" }}>{lang === "ja" ? `${currentChart}}: ` : ""}</span>
+            <span style={{ whiteSpace: "nowrap" }}>{lang === "ja" ? `${currentChart}: ` : ""}</span>
             <div className="is-flex is-flex-direction-column">
               <span>{critiqueQuestion(i18n)[currentChart].body}</span>
               <span className="is-size-7">
