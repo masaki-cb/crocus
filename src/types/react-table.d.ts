@@ -2,7 +2,6 @@ import {
     UseSortByColumnOptions,
     UseSortByColumnProps,
     UseSortByInstanceProps,
-    UseSortByColumnOptions,
     UseSortByState
   } from 'react-table';
   

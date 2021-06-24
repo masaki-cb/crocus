@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
 
 import { CritiqueRecord, CritiqueQuestionID } from "../../types/Critique";
 import BarChart from "../molecules/BarChart";
@@ -12,11 +13,18 @@ import { getCritiqueQuestionDescription } from "../../utils/Critique";
 const ChartZone = ({
   currentCritique,
   records,
+  lang,
 }: {
   currentCritique: CritiqueRecord;
   records: CritiqueRecord[];
+  lang: "ja" | "en";
 }) => {
   const [currentChart, setCurrentChart] = useState<CritiqueQuestionID | "">("");
+  const [, i18n] = useTranslation();
+  useEffect(() => {
+    i18n.changeLanguage(lang);
+  }, [lang, i18n]);
+
   const renderContent = () => {
     if (currentChart === "") {
       return critiqueQuestionIDs.map((item) => (
@@ -26,7 +34,7 @@ const ChartZone = ({
           key={item}
         >
           <h3 className="title is-7 m-0 pb-1">
-            {item}:{critiqueQuestion[item].bodyShort}
+            {lang === "ja" ? `${item}: ` : ""}{critiqueQuestion(i18n)[item].bodyShort}
           </h3>
           <BarChart
             values={records.map((r) => r[item]).sort()}
@@ -47,11 +55,13 @@ const ChartZone = ({
             >
               <FontAwesomeIcon icon={faTimes} className="mr-3" />
             </span>
-            <span style={{ whiteSpace: "nowrap" }}>{currentChart}:</span>
+            <span style={{ whiteSpace: "nowrap" }}>{lang === "ja" ? `${currentChart}: ` : ""}</span>
             <div className="is-flex is-flex-direction-column">
-              <span>{critiqueQuestion[currentChart].body}</span>
+              <span>{critiqueQuestion(i18n)[currentChart].body}</span>
               <span className="is-size-7">
-                {getCritiqueQuestionDescription(critiqueQuestion[currentChart])}
+                {getCritiqueQuestionDescription(
+                  critiqueQuestion(i18n)[currentChart]
+                )}
               </span>
             </div>
           </h3>
