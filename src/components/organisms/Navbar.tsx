@@ -11,7 +11,6 @@ const Navbar = ({ lang, setLang }: Props) => {
   useEffect(() => {
     document.getElementById("root")?.addEventListener("click", (e) => {
       const target = e.target as HTMLElement;
-      console.log(target);
       if (target.id !== "dropdown-trigger") setIsOpen(false);
     });
   }, []);

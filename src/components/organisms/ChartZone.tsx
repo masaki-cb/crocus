@@ -34,7 +34,7 @@ const ChartZone = ({
           key={item}
         >
           <h3 className="title is-7 m-0 pb-1">
-            {item}:{critiqueQuestion(i18n)[item].bodyShort}
+            {lang === "ja" ? `${item}: ` : ""}{critiqueQuestion(i18n)[item].bodyShort}
           </h3>
           <BarChart
             values={records.map((r) => r[item]).sort()}
@@ -55,11 +55,13 @@ const ChartZone = ({
             >
               <FontAwesomeIcon icon={faTimes} className="mr-3" />
             </span>
-            <span style={{ whiteSpace: "nowrap" }}>{currentChart}:</span>
+            <span style={{ whiteSpace: "nowrap" }}>{lang === "ja" ? `${currentChart}}: ` : ""}</span>
             <div className="is-flex is-flex-direction-column">
               <span>{critiqueQuestion(i18n)[currentChart].body}</span>
               <span className="is-size-7">
-                {getCritiqueQuestionDescription(critiqueQuestion(i18n)[currentChart])}
+                {getCritiqueQuestionDescription(
+                  critiqueQuestion(i18n)[currentChart]
+                )}
               </span>
             </div>
           </h3>
