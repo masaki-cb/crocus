@@ -133,7 +133,7 @@ const App = () => {
               <ul>
                 <li>
                   <span className=".is-no-wrap ">
-                    <a href="https://www.slis.tsukuba.ac.jp/~masaki">
+                    <a href="https://www.slis.tsukuba.ac.jp/~masaki" target="_blank"  rel="noreferrer">
                       {t("松原 正樹")}{" "}
                     </a>
                     {t("（筑波大学）")}{" "}
@@ -158,8 +158,13 @@ const App = () => {
                   </span>
                 </li>
                 <li>
-                  <span className="</li>.is-no-wrap ">
-                    {t("香川璃奈（筑波大学）")}
+                  <span className=".is-no-wrap ">
+                    <a href='https://sites.google.com/view/rinabou/home/CV_Japanese' target="_blank"  rel="noreferrer">
+                      {t("香川璃奈")}
+                    </a>
+                    {' '}
+                      {t("（筑波大学）")}
+                    {' '}
                   </span>
                 </li>
               </ul>

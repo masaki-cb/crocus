@@ -8,18 +8,19 @@ type Props = {
 };
 const Navbar = ({ lang, setLang }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
-  useEffect(() => {
-    document.getElementById("root")?.addEventListener("click", (e) => {
-      const target = e.target as HTMLElement;
-      if (target.id !== "dropdown-trigger") setIsOpen(false);
-    });
-  }, []);
+  // useEffect(() => {
+  //   document.getElementById("dropdown-trigger")?.addEventListener("click", (e) => {
+  //     const target = e.currentTarget as HTMLElement;
+  //     console.log(target)
+  //     if (target.id !== "dropdown-trigger") setIsOpen(false);
+  //   });
+  // }, []);
   return (
     <nav className="navbar is-flex is-flex-direction-row-reverse">
       <div>
       <div
         className={`dropdown navbar-item is-right ${isOpen ? "is-active" : ""}`}
-        onClick={(e) => {
+        onClick={() => {
           setIsOpen(!isOpen);
         }}
       >
