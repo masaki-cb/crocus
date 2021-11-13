@@ -26,6 +26,7 @@ i18n.use(initReactI18next).init({
   fallbackLng: false, // フォールバックしない＝keyをそのまま表示
   returnEmptyString: false, // 空文字での定義を許可
   nsSeparator:':::',
+  keySeparator:"___"
 });
 
 export {i18n}

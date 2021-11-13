@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 
 import { useTranslation } from "react-i18next";
@@ -11,6 +10,9 @@ import ChartZone from "./components/organisms/ChartZone";
 import Navbar from "./components/organisms/Navbar";
 import Icon from "./CROCUS_small.png";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLink } from "@fortawesome/free-solid-svg-icons";
+
 const App = () => {
   const records: CritiqueRecord[] = jsonData;
 
@@ -21,6 +23,7 @@ const App = () => {
   useEffect(() => {
     i18n.changeLanguage(lang);
     document.title = "CROCUS: " + t("音楽演奏講評データセット");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lang, i18n]);
 
   return (
@@ -58,22 +61,29 @@ const App = () => {
           </p>
           <p className="mb-4">
             <a href="https://zenodo.org/record/4748243">
-              {t("ダウンロード先")}
+              {t("オーボエ演奏講評データ")} <FontAwesomeIcon icon={faLink} />
             </a>
-            {t("（現在はオーボエ演奏に対する講評文書のみ収録中）")}
-            <br />
           </p>
+          <p className="mb-4">{t("ピアノ演奏講評データ（近日公開予定）")}</p>
+          <p className="mb-4">{t("ギター演奏講評データ（近日公開予定）")}</p>
           <p className="mb-0">
             <span className="title is-5">{t("発表文献")}</span>
             <br />
-            <span>{t("松原正樹, 辻功, 平野剛, 香川璃奈")}:</span>
-            <span>
+            <p>
               {t(
-                "演奏講評文書データベースの構築および講評文書の構造と効用の関係"
+                "松原正樹, 辻功, 平野剛, 香川璃奈:演奏講評文書データベースの構築および講評文書の構造と効用の関係.情報処理学会第131回音楽情報科学研究会, 9 pages, 2021"
               )}
-              .
-            </span>
-            <span>{t("情報処理学会第131回音楽情報科学研究会, 2021")}</span>
+            </p>
+            <p>
+              {t(
+                `Masaki Matsubara, Rina Kagawa, Takeshi Hirano and Isao Tsuji, “CROCUS: Dataset of Musical Performance Critiques: Relationship between Critique Content and Its Utility”, the 15th International Symposium on Computer Music Multidisciplinary Research (CMMR 2021), pp. 279-288, 2021. `
+              )}
+            </p>
+            <p>
+              {t(
+                `Masaki Matsubara, Rina Kagawa, Takeshi Hirano and Isao Tsuji, “Analysis of Usefulness of Critique Documents on Musical Performance:Toward better Instructional Document Format”, The 23rd International Conference on Asia-Pacific Digital Libraries (ICADL 2021), 2021. (to appear)`
+              )}
+            </p>
           </p>
         </div>
       </div>
@@ -133,7 +143,11 @@ const App = () => {
               <ul>
                 <li>
                   <span className=".is-no-wrap ">
-                    <a href="https://www.slis.tsukuba.ac.jp/~masaki" target="_blank"  rel="noreferrer">
+                    <a
+                      href="https://www.slis.tsukuba.ac.jp/~masaki"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
                       {t("松原 正樹")}{" "}
                     </a>
                     {t("（筑波大学）")}{" "}
@@ -159,12 +173,14 @@ const App = () => {
                 </li>
                 <li>
                   <span className=".is-no-wrap ">
-                    <a href='https://sites.google.com/view/rinabou/home/CV_Japanese' target="_blank"  rel="noreferrer">
+                    <a
+                      href="https://sites.google.com/view/rinabou/home/CV_Japanese"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
                       {t("香川璃奈")}
-                    </a>
-                    {' '}
-                      {t("（筑波大学）")}
-                    {' '}
+                    </a>{" "}
+                    {t("（筑波大学）")}{" "}
                   </span>
                 </li>
               </ul>
