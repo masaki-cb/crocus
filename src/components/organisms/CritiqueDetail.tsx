@@ -1,13 +1,17 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { useTranslation } from "react-i18next";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 
 import { CritiqueRecord } from "../../types/Critique";
+import tagParser from "../../utils/tagParser";
 import styles from "./CritiqueDetail.module.scss";
 
 type Props = { data: CritiqueRecord; lang: "ja" | "en" };
 const CritiqueDetail = ({ data, lang }: Props) => {
   const [t, i18n] = useTranslation();
+  const [isTagActive, setIsTagActive] = useState(false);
 
   useEffect(() => {
     i18n.changeLanguage(lang);
@@ -28,25 +32,48 @@ const CritiqueDetail = ({ data, lang }: Props) => {
           </span>
         </p>
         <div className={`mt-5 ${styles.cardContentBody}`}>
-          <p
-            dangerouslySetInnerHTML={{
-              __html: data.content.replaceAll("\n", "<br />"),
-            }}
-            className="has-text-justified"
-          />
-          {lang !== "ja" ? (
-            <a
-              target="_blank"
-              rel="noreferrer"
-              href={`https://translate.google.com/?hl=ja&sl=ja&tl=en&text=${encodeURIComponent(
-                data.content
-              )}&op=translate`}
-            >
-              <p className="mt-4">Translate on Google</p>
-            </a>
+          {isTagActive ? (
+            <p
+              dangerouslySetInnerHTML={{
+                __html: tagParser(
+                  data.taggedContent.replaceAll("\n", "<br />")
+                ),
+              }}
+              className="has-text-justified"
+            />
           ) : (
-            <></>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: data.content.replaceAll("\n", "<br />"),
+              }}
+              className="has-text-justified"
+            />
           )}
+
+          <div className="is-flex is-align-items-center is-justify-content-space-around">
+            {lang !== "ja" ? (
+              <p >
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href={`https://translate.google.com/?hl=ja&sl=ja&tl=en&text=${encodeURIComponent(
+                    data.content
+                  )}&op=translate`}
+                >
+                  Translate on Google
+                  <FontAwesomeIcon className="mx-1" icon={faExternalLinkAlt} />
+                </a>
+              </p>
+            ) : (
+              <></>
+            )}
+            <button
+              className="button"
+              onClick={() => setIsTagActive(!isTagActive)}
+            >
+              {isTagActive ? t("タグを非表示") : t("タグを表示")}
+            </button>
+          </div>
         </div>
         <audio
           controls
