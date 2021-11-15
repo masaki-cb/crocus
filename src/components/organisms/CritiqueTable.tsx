@@ -87,6 +87,7 @@ const CritiqueTable = ({ allData, onRowClick, currentItem, lang }: Props) => {
         <h2 className="title is-4">
           {t("講評文書リスト")}
           <span className="is-size-7 ml-2 has-text-weight-normal">
+            {t("行を選択することで詳細を見ることができます。")}
             {t("シフトキーを押した際マルチソートになります。")}
           </span>
         </h2>
