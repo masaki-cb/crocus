@@ -17,8 +17,8 @@ const CritiqueDetail = ({ data, lang }: Props) => {
     i18n.changeLanguage(lang);
   }, [lang, i18n]);
   return (
-    <div className="card" style={{ height: "100%" }}>
-      <div className="card-content" style={{ height: "70vh" }}>
+    <div className="card">
+      <div className="card-content" >
         <h2 className="title is-4">{t("講評文書")}</h2>
         <p className="is-size-6">
           <span className="mr-2">
@@ -49,41 +49,32 @@ const CritiqueDetail = ({ data, lang }: Props) => {
               className="has-text-justified"
             />
           )}
-
-          <div className="is-flex is-align-items-center is-justify-content-space-around">
-            {lang !== "ja" ? (
-              <p >
-                <a
-                  target="_blank"
-                  rel="noreferrer"
-                  href={`https://translate.google.com/?hl=ja&sl=ja&tl=en&text=${encodeURIComponent(
-                    data.content
-                  )}&op=translate`}
-                >
-                  Translate on Google
-                  <FontAwesomeIcon className="mx-1" icon={faExternalLinkAlt} />
-                </a>
-              </p>
-            ) : (
-              <></>
-            )}
-            <button
-              className="button"
-              onClick={() => setIsTagActive(!isTagActive)}
-            >
-              {isTagActive ? t("タグを非表示") : t("タグを表示")}
-            </button>
-          </div>
         </div>
-        <audio
-          controls
-          src={`./Performance_Recordings_mp3/${data.pieceID}-${data.playerID}.mp3`}
-          className={`mt-5`}
-          style={{ width: "100%" }}
-        >
-          Your browser does not support the
-          <code>audio</code> element.
-        </audio>
+
+        <div className="mt-5 is-flex is-align-items-center ">
+          {lang !== "ja" ? (
+            <p className="mr-5">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href={`https://translate.google.com/?hl=ja&sl=ja&tl=en&text=${encodeURIComponent(
+                  data.content
+                )}&op=translate`}
+              >
+                Translate on Google
+                <FontAwesomeIcon className="mx-1" icon={faExternalLinkAlt} />
+              </a>
+            </p>
+          ) : (
+            <></>
+          )}
+          <button
+            className="button"
+            onClick={() => setIsTagActive(!isTagActive)}
+          >
+            {isTagActive ? t("タグを非表示") : t("タグを表示")}
+          </button>
+        </div>
       </div>
     </div>
   );

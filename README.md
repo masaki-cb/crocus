@@ -7,6 +7,4 @@
   
 ## 開発
 1. `yarn install`
-2. `yarn start`
-
-`t()`でくくるとlocalesのJSONが更新される
+2. `yarn start` (`t()`でくくるとリアルタイムでlocalesのJSONが更新される)
