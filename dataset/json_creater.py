@@ -5,11 +5,14 @@ import csv
 
 critique_datas = []
 DIRNAME = "Critique_Documents"
+DIRNAME_TAGGED = "tagged0610"
 
 
 for f_name in os.listdir(DIRNAME):
     with open(os.path.join(DIRNAME, f_name), encoding="utf-8") as f:
         content = f.read()
+    with open(os.path.join(DIRNAME_TAGGED, f_name), encoding="utf-8") as f:
+        taggedContent = f.read()
     PieceID, PlayerID, CriticID = re.findall(
         "(n\d{2}-\w{3}-\w{4})-(p\d{2})-(c\d{2})", f_name
     )[0]
@@ -38,6 +41,7 @@ for f_name in os.listdir(DIRNAME):
             "criticID": CriticID,
             "critiqueFileName": f_name,
             "content": content,
+            "taggedContent": taggedContent,
             **scores
         }
     )
