@@ -1,4 +1,4 @@
-import {  useEffect } from "react";
+import { useEffect } from "react";
 
 import { useTranslation } from "react-i18next";
 
@@ -42,7 +42,7 @@ const CritiqueDetail = ({ data, lang }: Props) => {
                 data.content
               )}&op=translate`}
             >
-              <p>Translate on Google</p>
+              <p className="mt-4">Translate on Google</p>
             </a>
           ) : (
             <></>
