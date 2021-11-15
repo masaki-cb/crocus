@@ -69,12 +69,12 @@ const App = () => {
           <p className="mb-0">
             <span className="title is-5">{t("発表文献")}</span>
             <br />
-            <p>
+             <p>
               {t(
                 "松原正樹, 辻功, 平野剛, 香川璃奈:演奏講評文書データベースの構築および講評文書の構造と効用の関係.情報処理学会第131回音楽情報科学研究会, 9 pages, 2021"
               )}
             </p>
-            <p>
+           <p>
               {t(
                 `Masaki Matsubara, Rina Kagawa, Takeshi Hirano and Isao Tsuji, “CROCUS: Dataset of Musical Performance Critiques: Relationship between Critique Content and Its Utility”, the 15th International Symposium on Computer Music Multidisciplinary Research (CMMR 2021), pp. 279-288, 2021. `
               )}
