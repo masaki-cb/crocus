@@ -107,6 +107,20 @@ const App = () => {
             </div>
             <div className="column">
               <CritiqueDetail data={currentCritique} lang={lang} />
+              <div className="card mt-5">
+                <div className="card-content">
+
+              <audio
+                controls
+                src={`./Performance_Recordings_mp3/${currentCritique.pieceID}-${currentCritique.playerID}.mp3`}
+                style={{ width: "100%"} }
+              >
+                Your browser does not support the
+                <code>audio</code> element.
+              </audio>
+                </div>
+              </div>
+             
             </div>
           </div>
           <div className={`columns`}>

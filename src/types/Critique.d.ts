@@ -6,6 +6,7 @@ export interface CritiqueRecord {
     criticID: string;
     critiqueFileName: string;
     content: string;
+    taggedContent: string;
     Q1: number;
     Q2: number;
     Q3: number;
