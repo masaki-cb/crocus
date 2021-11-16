@@ -18,7 +18,7 @@ const CritiqueDetail = ({ data, lang }: Props) => {
   }, [lang, i18n]);
   return (
     <div className="card">
-      <div className="card-content" >
+      <div className="card-content">
         <h2 className="title is-4">{t("講評文書")}</h2>
         <p className="is-size-6">
           <span className="mr-2">
@@ -32,6 +32,7 @@ const CritiqueDetail = ({ data, lang }: Props) => {
           </span>
         </p>
         <div className={`mt-5 ${styles.cardContentBody}`}>
+          {/* 評価本文 */}
           {isTagActive ? (
             <p
               dangerouslySetInnerHTML={{
@@ -50,6 +51,34 @@ const CritiqueDetail = ({ data, lang }: Props) => {
             />
           )}
         </div>
+        {isTagActive && (
+          <>
+            <p>
+              <span style={{ padding: "0.17rem", color: "#b757aa" }}>■</span>
+              GSI: Giving subjective information
+            </p>
+            <p>
+              <span style={{ padding: "0.17rem", color: "#b75e57" }}>■</span>
+              GOI: Giving objective information
+            </p>
+            <p>
+              <span style={{ padding: "0.17rem", color: "#b7ae57" }}>■</span>AQ:
+              Asking question
+            </p>
+            <p>
+              <span style={{ padding: "0.17rem", color: "#62b757" }}>■</span>GF:
+              Giving feedback
+            </p>
+            <p>
+              <span style={{ padding: "0.17rem", color: "#57b2b7" }}>■</span>GP:
+              Giving practice strategy
+            </p>
+            <p>
+              <span style={{ padding: "0.17rem", color: "#5766b7" }}>■</span>GA:
+              Giving advice
+            </p>
+          </>
+        )}
 
         <div className="mt-5 is-flex is-align-items-center ">
           {lang !== "ja" ? (
