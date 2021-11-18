@@ -98,7 +98,7 @@ const CritiqueDetail = ({ data, lang }: Props) => {
             <></>
           )}
           <button
-            className="button"
+            className="button is-primary"
             onClick={() => setIsTagActive(!isTagActive)}
           >
             {isTagActive ? t("タグを非表示") : t("タグを表示")}
