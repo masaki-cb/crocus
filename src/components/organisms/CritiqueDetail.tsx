@@ -98,8 +98,11 @@ const CritiqueDetail = ({ data, lang }: Props) => {
             <></>
           )}
           <button
-            className="button is-primary"
-            onClick={() => setIsTagActive(!isTagActive)}
+            className={`button is-primary  ${isTagActive ? "is-outlined" : ""}`}
+            onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+              setIsTagActive(!isTagActive);
+              e.currentTarget.blur()
+            }}
           >
             {isTagActive ? t("タグを非表示") : t("タグを表示")}
           </button>
