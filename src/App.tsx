@@ -109,18 +109,16 @@ const App = () => {
               <CritiqueDetail data={currentCritique} lang={lang} />
               <div className="card mt-5">
                 <div className="card-content">
-
-              <audio
-                controls
-                src={`./Performance_Recordings_mp3/${currentCritique.pieceID}-${currentCritique.playerID}.mp3`}
-                style={{ width: "100%"} }
-              >
-                Your browser does not support the
-                <code>audio</code> element.
-              </audio>
+                  <audio
+                    controls
+                    src={`./Performance_Recordings_mp3/${currentCritique.pieceID}-${currentCritique.playerID}.mp3`}
+                    style={{ width: "100%" }}
+                  >
+                    Your browser does not support the
+                    <code>audio</code> element.
+                  </audio>
                 </div>
               </div>
-             
             </div>
           </div>
           <div className={`columns`}>
@@ -202,6 +200,26 @@ const App = () => {
                       {t("香川璃奈")}
                     </a>{" "}
                     {t("（筑波大学）")}{" "}
+                  </span>
+                </li>
+                <li>
+                  <span className=".is-no-wrap ">
+                    {t("飯野 なみ（国立情報学研究所）")}
+                  </span>
+                </li>
+                <li>
+                  <span className=".is-no-wrap ">
+                    {t("武田 英明（国立情報学研究所）")}
+                  </span>
+                </li>
+                <li>
+                  <span className=".is-no-wrap ">
+                    {t("三浦 寛也（理化学研究所）")}
+                  </span>
+                </li>
+                <li>
+                  <span className=".is-no-wrap ">
+                    {t("浜中 雅俊（理化学研究所）")}
                   </span>
                 </li>
               </ul>
