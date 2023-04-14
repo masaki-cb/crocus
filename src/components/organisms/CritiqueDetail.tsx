@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 import { CritiqueRecord } from "../../types/Critique";
 import tagParser from "../../utils/tagParser";
@@ -91,7 +92,7 @@ const CritiqueDetail = ({ data, lang }: Props) => {
                 )}&op=translate`}
               >
                 Translate on Google
-                <FontAwesomeIcon className="mx-1" icon={faExternalLinkAlt} />
+                <FontAwesomeIcon className="mx-1" icon={faExternalLinkAlt as IconProp} />
               </a>
             </p>
           ) : (

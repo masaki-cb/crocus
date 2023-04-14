@@ -13,6 +13,7 @@ import styles from "./CritiqueTable.module.scss";
 import { CritiqueQuestionID, CritiqueRecord } from "../../types/Critique";
 import { critiqueQuestionIDs, critiqueQuestion } from "../../consts/Critique";
 import { getCritiqueQuestionDescription } from "../../utils/Critique";
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 type Props = {
   onRowClick: (param: CritiqueRecord) => void;
@@ -132,17 +133,17 @@ const CritiqueTable = ({ allData, onRowClick, currentItem, lang }: Props) => {
                           {column.isSorted ? (
                             column.isSortedDesc ? (
                               <FontAwesomeIcon
-                                icon={faSortDown}
+                                icon={faSortDown as IconProp}
                                 className="has-text-primary"
                               />
                             ) : (
                               <FontAwesomeIcon
-                                icon={faSortUp}
+                                icon={faSortUp as IconProp}
                                 className="has-text-primary"
                               />
                             )
                           ) : (
-                            <FontAwesomeIcon icon={faSort} />
+                            <FontAwesomeIcon icon={faSort as IconProp} />
                           )}
                         </div>
                       </div>

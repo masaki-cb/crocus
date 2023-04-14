@@ -42,3 +42,10 @@ code {
 .is-no-wrap {
   white-space: nowrap;
 }
+
+.navbar-item img {
+  max-height: 3rem !important;
+}
+.nav figure{
+  margin-right: 20px;
+}

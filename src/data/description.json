@@ -1,0 +1,72 @@
+{
+  "title": "音楽演奏講評データセット",
+  "aboutThis": [
+    "CROCUS(CRitique dOCUmentS) 音楽演奏講評データセットは音楽教育研究のための公開データです。複数の楽器奏者による音楽演奏とその演奏に対する複数の指導者による講評文書が収められています。",
+    "プロを目指す楽器演奏者がどのような「ことば」で教育を受けているか、その質的な知は広く共有されていません。プロの教育者の「ことば」の使い方を分析・類型化することにより演奏指導における「ことば」の使い方に関する知見が明らかになることを願っております。"
+  ],
+  "linkDataset": [
+    {
+      "name": "オーボエ演奏講評データ",
+      "link": "/doc/oboe"
+    },
+    {
+      "name": "ピアノ演奏講評データ",
+      "link": "/doc/piano"
+    },
+    {
+      "name": "ギター演奏講評データ",
+      "link": "/doc/guitar"
+    }
+  ],
+  "references": {
+    "title": "発表文献",
+    "textList": [
+      "Masaki Matsubara, Rina Kagawa, Takeshi Hirano and Isao Tsuji, “CROCUS: Dataset of Musical Performance Critiques: Relationship between Critique Content and Its Utility”, the 15th International Symposium on Computer Music Multidisciplinary Research (CMMR 2021), pp. 279-288, 2021."
+    ]
+  },
+  "projectMembers": [
+    {
+      "name": "松原 正樹",
+      "link": "https://www.slis.tsukuba.ac.jp/~masaki",
+      "org": "（筑波大学）",
+      "address": "masaki[at]slis.tsukuba.ac[dot]jp"
+    },
+    {
+      "name": "開發 功太郎",
+      "org": "（筑波大学）"
+    },
+    {
+      "name": "辻 功",
+      "org": "（洗足音楽大学，国立音楽大学, 日本大学）"
+    },
+    {
+      "name": "平野 剛",
+      "org": "（電気通信大学）"
+    },
+    {
+      "name": "香川璃奈",
+      "link": "https://sites.google.com/view/rinabou/home/CV_Japanese",
+      "org": "（筑波大学）"
+    },
+    {
+      "name": "飯野 なみ",
+      "org": "（国立情報学研究所）"
+    },
+    {
+      "name": "武田 英明",
+      "org": "（国立情報学研究所）"
+    },
+    {
+      "name": "三浦 寛也",
+      "org": "（理化学研究所）"
+    },
+    {
+      "name": "浜中 雅俊",
+      "org": "（理化学研究所）"
+    }
+  ],
+  "acknowledgment": [
+    "本プロジェクトはJST未来社会創造事業JPMJMI19G8「質的な知を客体化するドキュメンテーション基盤技術：芸術分野文書のフォーマット探索」の助成を受けました。",
+    "データ収集にご協力いただいた協力者の皆様に深くお礼を申し上げます。"
+  ]
+}

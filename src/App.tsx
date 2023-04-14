@@ -1,48 +1,49 @@
-import { useState, useEffect } from "react";
-
-import { useTranslation } from "react-i18next";
-
-import jsonData from "./data.json";
-import { CritiqueRecord } from "./types/Critique";
+import {useState} from "react";
+import {useParams} from "react-router-dom";
+//import jsonData from "./data/oboe/data.json";
+import {CritiqueRecord} from "./types/Critique";
 import CritiqueTable from "./components/organisms/CritiqueTable";
 import CritiqueDetail from "./components/organisms/CritiqueDetail";
 import ChartZone from "./components/organisms/ChartZone";
 import Navbar from "./components/organisms/Navbar";
 
-import PageTitle from "./components/PageTitle";
 import AboutThis from "./components/AboutThis";
 import LinkDataset from "./components/LinkDataset";
-import References from "./components/References";
 import AudioPlayer from "./components/AudioPlayer";
 import Footer from "./components/Footer";
 import ScoreViewer from "./components/ScoreViewer";
+import {usePersist} from "./components/organisms/usePersist";
+import TopTitle from "./components/TopTitle";
+import Icon from "./CROCUS_small.png";
+import TextList from "./components/TextList";
+
 
 const App = () => {
-  const records: CritiqueRecord[] = jsonData;
+  const {id} = useParams<{id: string}>();
+
+  const records: CritiqueRecord[] = require(`./data/${id}/data.json`);
 
   const [currentCritique, setCurrentCritique] = useState(records[0]);
-  const [t, i18n] = useTranslation();
-  const [lang, setLang] = useState<"en" | "ja">("en");
+  const [lang, setLang] = usePersist("lang","en",["en","ja"]);
 
-  useEffect(() => {
-    i18n.changeLanguage(lang);
-    document.title = "CROCUS: " + t("音楽演奏講評データセット");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lang, i18n]);
+  const description = require(`./data/${id}/description.json`);
+
 
   return (
     <>
-      <Navbar lang={lang} setLang={(p) => setLang(p)} />
+      <Navbar lang={lang} setLang={(p) => setLang(p)} iconImg={Icon} />
       <div className="section pb-0">
         <div className="container">
-          <PageTitle />
-          <AboutThis />
+          <TopTitle title={description.title}  />
+          <AboutThis aboutThis={description.aboutThis}  />
           <div className="content">
-            <LinkDataset />
+            <LinkDataset linkDataset={description.linkDataset}  />
           </div>
+          {description.references !=null &&
           <div className="mb-0 content">
-            <References />
+            <TextList title={description.references.title} testList={description.references.textList} />
           </div>
+          }
         </div>
       </div>
       <div className="section">
@@ -75,7 +76,7 @@ const App = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      <Footer projectMembers={description.projectMembers} acknowledgment={description.acknowledgment}/>
     </>
   );
 };
