@@ -1,4 +1,8 @@
+import { Chart as ChartJS, BarElement, Tooltip, Legend,LinearScale,CategoryScale } from "chart.js";
 import { Bar } from "react-chartjs-2";
+
+ChartJS.register(BarElement, Tooltip, Legend,LinearScale,CategoryScale);
+
 type Props = {
   values: number[];
   targetVal: number;
@@ -41,7 +45,7 @@ const BarChart = ({ values, targetVal, itemName }: Props) => {
     },
   };
 
-  return <Bar type="" data={data} width={100} height={50} options={options} />;
+  return <Bar data={data} width={100} height={50} options={options} />;
 };
 
 export default BarChart;

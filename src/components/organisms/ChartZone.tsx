@@ -9,6 +9,7 @@ import BarChart from "../molecules/BarChart";
 import styles from "./ChartZone.module.scss";
 import { critiqueQuestion, critiqueQuestionIDs } from "../../consts/Critique";
 import { getCritiqueQuestionDescription } from "../../utils/Critique";
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 const ChartZone = ({
   currentCritique,
@@ -53,7 +54,7 @@ const ChartZone = ({
               }}
               className="clickable"
             >
-              <FontAwesomeIcon icon={faTimes} className="mr-3" />
+              <FontAwesomeIcon icon={faTimes as IconProp} className="mr-3" />
             </span>
             <span style={{ whiteSpace: "nowrap" }}>{lang === "ja" ? `${currentChart}: ` : ""}</span>
             <div className="is-flex is-flex-direction-column">

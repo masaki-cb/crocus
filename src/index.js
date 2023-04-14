@@ -1,8 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from "react-dom/client";
 import './index.scss';
 import App from './App';
+import Menu from './Menu';
+
 import reportWebVitals from './reportWebVitals';
+import {
+  HashRouter, Routes, Route,
+} from "react-router-dom";
 
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next';
@@ -31,11 +36,18 @@ i18n.use(initReactI18next).init({
 
 export {i18n}
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+const root = ReactDOM.createRoot(document.getElementById('root'))
+
+root.render(
+    <React.StrictMode>
+      <HashRouter>
+        <Routes>
+          <Route path={`/index.html`} element={<Menu />} />
+          <Route path={`/`} element={<Menu />} />
+          <Route path={`/doc/:id`} element={<App />} />
+        </Routes>
+      </HashRouter>
+    </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
