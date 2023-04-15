@@ -10,8 +10,6 @@ type Props = {
     iconImg:any;
 };
 const Navbar = ({ lang, setLang,iconImg }: Props) => {
-    console.log("PUBLIC_URL");
-    console.log(process.env.PUBLIC_URL);
   const [isOpen, setIsOpen] = useState(false);
   // useEffect(() => {
   //   document.getElementById("dropdown-trigger")?.addEventListener("click", (e) => {

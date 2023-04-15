@@ -8,10 +8,12 @@
   "linkDataset": [
     {"name":"ピアノ演奏講評データ","link": "https://zenodo.org/record/7753365"}
   ],
-  "references": [
-"(comming soon)"
-  ],
-
+  "references": {
+    "title": "発表文献",
+    "textList": [
+      "(coming soon)"
+    ]
+  },
   "projectMembers": [
     {
       "name":"松原 正樹",
