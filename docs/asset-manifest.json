@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/crocus/static/css/main.08d92b83.css",
-    "main.js": "/crocus/static/js/main.c8c39dd8.js",
+    "main.js": "/crocus/static/js/main.91394e11.js",
     "static/js/787.71a37b2a.chunk.js": "/crocus/static/js/787.71a37b2a.chunk.js",
     "static/media/n04-bra-vcon-p01.mp3": "/crocus/static/media/n04-bra-vcon-p01.bc5b578b70adfd623482.mp3",
     "static/media/n04-bra-vcon-p03.mp3": "/crocus/static/media/n04-bra-vcon-p03.2c8988275636bd62a9f0.mp3",
@@ -106,11 +106,11 @@
     "static/media/n02-ros-silk.pdf": "/crocus/static/media/n02-ros-silk.e84cbb0d19eb3029a1f1.pdf",
     "index.html": "/crocus/index.html",
     "main.08d92b83.css.map": "/crocus/static/css/main.08d92b83.css.map",
-    "main.c8c39dd8.js.map": "/crocus/static/js/main.c8c39dd8.js.map",
+    "main.91394e11.js.map": "/crocus/static/js/main.91394e11.js.map",
     "787.71a37b2a.chunk.js.map": "/crocus/static/js/787.71a37b2a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.08d92b83.css",
-    "static/js/main.c8c39dd8.js"
+    "static/js/main.91394e11.js"
   ]
 }
