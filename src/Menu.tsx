@@ -19,8 +19,6 @@ const Menu = () => {
 
     const description = require(`./data/description.json`);
 
-    console.log(description);
-
     useEffect(() => {
         i18n.changeLanguage(lang);
         document.title = "CROCUS: " + t("講評データセット");

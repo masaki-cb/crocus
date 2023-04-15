@@ -11,10 +11,6 @@ const ScoreViewer: FC<Props> = React.memo(({ critique }) => {
   const [t] = useTranslation();
 
 
-  console.log("id",id);
-  console.log("critique.pieceID",critique.pieceID);
-  console.log("process.env.PUBLIC_URL",process.env.PUBLIC_URL);
-
   try {
     const records: any = require(`../../public/${id}/Music_Score/${critique.pieceID}.pdf`);
     // do stuff
